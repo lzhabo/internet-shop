@@ -14,7 +14,8 @@
     "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.1",
     "react-phone-number-input": "^3.0.25",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "shop-common": "file:../common/dist"
   },
   "scripts": {
     "start": "./env-to-config.sh && mv env-config.js ./public/ && node scripts/start.js",

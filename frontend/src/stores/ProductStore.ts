@@ -1,6 +1,6 @@
 import { RootStore } from "./index";
 import { action, computed, observable, runInAction } from "mobx";
-import productsService from "@services/productsService";
+import { productsService } from "../services";
 import { IProduct } from "../interfaces";
 
 export default class ProductStore {
@@ -35,9 +35,7 @@ export default class ProductStore {
   }
 
   @action
-  add = () => {
-    this.products.push(this.emptyProducts);
-  };
+  add = () => {};
 
   @computed get activeProduct(): IProduct | undefined {
     return this.products[0] ?? undefined;
