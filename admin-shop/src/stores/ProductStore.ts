@@ -1,8 +1,6 @@
 import { RootStore } from "./index";
 import { action, computed, observable, runInAction } from "mobx";
-import productsService, {
-  TUpdateProductParams,
-} from "@services/productsService";
+import { productsService } from "../services";
 import { IProduct } from "../interfaces";
 import { notification } from "antd";
 
@@ -27,6 +25,7 @@ export default class ProductStore {
   @computed get activeProduct(): IProduct | undefined {
     return this.products[0] ?? undefined;
   }
+
   @computed get emptyProductItem() {
     return {
       // id: ObjectId(),
@@ -39,6 +38,7 @@ export default class ProductStore {
       type: "",
     };
   }
+
   @action add = async (data: {
     images?: string[];
     size: number;
@@ -58,13 +58,3 @@ export default class ProductStore {
     }
   };
 }
-// export interface IProduct {
-//   name: string;
-//   price: number;
-//   photos?: string[];
-//   description?: string;
-//   disabled?: boolean;
-//   size: string;
-//   material: string;
-//   type: string;
-// }

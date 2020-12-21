@@ -3,7 +3,7 @@ import { Product } from "../models/Product";
 
 export const getAllProducts: RequestHandler<null> = async (req, res, next) => {
   const products = await Product.find({}).exec();
-  console.log(req.headers);
+  console.log(req.headers.authorization);
   res.send(products);
 };
 export const getProductById: RequestHandler = async (req, res, next) => {

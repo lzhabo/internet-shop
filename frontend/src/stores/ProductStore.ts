@@ -14,6 +14,7 @@ export default class ProductStore {
   @observable products: IProduct[] = [];
 
   @action sync = async () => {
+    console.log(this.rootStore.accountStore.initialized);
     const products = await productsService.products();
     runInAction(() => {
       this.products = products;

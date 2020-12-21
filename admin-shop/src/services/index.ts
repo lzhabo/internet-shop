@@ -1,6 +1,6 @@
 import apiService from "shop-common/services/apiService";
 import firebaseService from "shop-common/services/firebaseService";
-// import authService from "./authService";
+import productsService from "shop-common/services/productsService";
 
 // Initialize Firebase
 const config = {
@@ -13,6 +13,6 @@ const config = {
   appId: window._env_.FIREBASE_APP_ID,
 };
 
-// firebaseService.firebase.initializeApp(config);
-// apiService.init(window._env_.API_BASE, firebaseService.auth);
-// export { apiService, authService, firebaseService };
+firebaseService.firebase.initializeApp(config);
+apiService.init(window._env_.API_BASE, firebaseService.auth);
+export { apiService, productsService, firebaseService };
