@@ -12,6 +12,8 @@ interface IFormValues {
 const Root = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  //align-items: center;
 `;
 
 const layout = {
@@ -22,7 +24,7 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-const Login: React.FC<IProps> = () => {
+const LoginScreen: React.FC<IProps> = () => {
   const onFinishFailed = (errorInfo: IFormValues) => {
     notification.error({ message: "We couldn't log you in" });
   };
@@ -33,6 +35,9 @@ const Login: React.FC<IProps> = () => {
     <Root>
       <Form
         {...layout}
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 8 }}
+        layout="horizontal"
         name="basic"
         initialValues={{ remember: true }}
         onFinish={handleFinish}
@@ -67,4 +72,4 @@ const Login: React.FC<IProps> = () => {
     </Root>
   );
 };
-export default Login;
+export default LoginScreen;

@@ -1,17 +1,29 @@
-import { SettingsStore, RouterStore, ProductStore } from "./index";
+import { RouterStore, ProductStore, AccountStore } from "./index";
+import { computed, reaction, when } from "mobx";
 
 export default class RootStore {
-  public settingsStore: SettingsStore;
   public routerStore: RouterStore;
   public productStore: ProductStore;
+  public accountStore: AccountStore;
 
   constructor(initState?: any) {
-    this.settingsStore = new SettingsStore(this);
     this.routerStore = new RouterStore(this);
     this.productStore = new ProductStore(this);
+    this.accountStore = new AccountStore(this);
 
-    Promise.all([this.productStore.sync()]).then();
+    reaction(
+      () => this.accountStore.admin,
+      async (user) => {
+        if (user != null) {
+          Promise.all([this.productStore.sync()]).then();
+        }
+      }
+    );
 
     console.log(this);
+  }
+
+  @computed get initialized() {
+    return this.accountStore.admin != null && this.productStore.initialized;
   }
 }

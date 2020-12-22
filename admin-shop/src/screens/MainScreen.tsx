@@ -4,7 +4,7 @@ import { Layout, Menu } from "antd";
 import Products from "@components/Products";
 import { ROUTES } from "@stores/RouterStore";
 import { PieChartOutlined, DiffOutlined } from "@ant-design/icons";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import NewProductForm from "@components/NewProductForm";
 import { useHistory } from "react-router-dom";
 import RegistrationForm from "@components/RegistrationForm";
@@ -18,7 +18,7 @@ const Root = styled.div`
   flex-direction: column;
 `;
 
-const SideBar: React.FC<IProps> = () => {
+const MainScreen: React.FC<IProps> = () => {
   const history = useHistory();
   return (
     <Root>
@@ -45,18 +45,17 @@ const SideBar: React.FC<IProps> = () => {
           <Header className="site-layout-background" style={{ padding: 0 }} />
           <Content style={{ margin: "0 16px" }}>
             <div>
-              <Route path={ROUTES.NEW}>
-                <NewProductForm />
-              </Route>
-              <Route path={ROUTES.REGISTER}>
-                <RegistrationForm />
-              </Route>
-              <Route path={ROUTES.ROOT}>
-                <div />
-              </Route>
-              <Route path={ROUTES.PRODUCTS}>
-                <Products />
-              </Route>
+              <Switch>
+                <Route path={ROUTES.NEW}>
+                  <NewProductForm />
+                </Route>
+                <Route path={ROUTES.REGISTER}>
+                  <RegistrationForm />
+                </Route>
+                <Route path={ROUTES.PRODUCTS}>
+                  <Products />
+                </Route>
+              </Switch>
             </div>
           </Content>
         </Layout>
@@ -64,4 +63,4 @@ const SideBar: React.FC<IProps> = () => {
     </Root>
   );
 };
-export default SideBar;
+export default MainScreen;

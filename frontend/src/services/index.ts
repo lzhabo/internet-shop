@@ -1,7 +1,6 @@
 import apiService from "shop-common/services/apiService";
 import firebaseService from "shop-common/services/firebaseService";
 import productsService from "shop-common/services/productsService";
-
 // Initialize Firebase
 const config = {
   apiKey: window._env_.FIREBASE_API_KEY,

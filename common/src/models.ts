@@ -4,6 +4,7 @@ export interface IImage {
   path: string;
   size: number;
 }
+
 export interface IProduct {
   name: string;
   price: number;
@@ -13,4 +14,11 @@ export interface IProduct {
   size: number;
   material: string;
   type: string;
+}
+
+export interface IAdmin {
+  firebase_uid: string;
+  phone_number: string;
+  email: string;
+  is_admin: boolean;
 }

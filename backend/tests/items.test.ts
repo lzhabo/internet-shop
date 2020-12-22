@@ -1,5 +1,6 @@
 import axios from "axios";
 import { TProductDocument } from "../src/models/Product";
+import authService from "../src/services/authService";
 
 async function getRandomPhotoUrl(): Promise<string> {
   const { request } = await axios.get(`https://picsum.photos/1080/1080`);
@@ -58,5 +59,10 @@ describe("delete data", () => {
         axios.delete(`http://localhost:5000/api/v1/products/${_id}`)
       )
     );
+  });
+});
+describe("auth things", () => {
+  it("create admin", async () => {
+    await authService.createAdmin("lidia.zhabo99@gmail.com");
   });
 });

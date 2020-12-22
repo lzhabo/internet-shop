@@ -1,6 +1,6 @@
 import { RootStore } from "./index";
 import { createBrowserHistory, Location } from "history";
-import { observable, runInAction } from "mobx";
+import { observable, runInAction, reaction } from "mobx";
 
 export enum ROUTES {
   ROOT = "/",
@@ -17,26 +17,29 @@ export default class RouterStore {
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
 
-    this.history.listen((location, action) => {
-      this.sync(location);
-    });
-    this.sync(this.history.location);
+    // this.history.listen((location, action) => {
+    //   this.sync(location);
+    // });
+    // this.sync(this.history.location);
+    reaction(
+      () => this.rootStore.accountStore.admin,
+      (user) => {
+        if (user == null) {
+          this.history.replace(ROUTES.LOGIN);
+        }
+      }
+    );
   }
-
-  @observable
-  currentPath: ROUTES = ROUTES.ROOT;
-
-  @observable
-  currentHash = "";
-
-  @observable
-  searchParams = new URLSearchParams();
-
-  sync = (location: Location) => {
-    runInAction(() => {
-      this.currentPath = location.pathname as any;
-      this.currentHash = location.hash;
-      this.searchParams = new URLSearchParams(location.search);
-    });
-  };
+  // reaction(
+  //     () => this.rootStore.initialized,
+  //     (v) => {
+  //         if (v) {
+  //             this.history.replace(
+  //                 (this.history.location?.state as any)?.from ?? {
+  //                     pathname: /${this.rootStore.pageStore.pages[0].lang}${ROUTES.START_PAGE},
+  //                 }
+  //             );
+  //         }
+  //     }
+  // );
 }
