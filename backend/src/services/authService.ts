@@ -38,10 +38,10 @@ class AuthService {
     }
   };
 
-  // public authorizeAdmin = async (req: Request, res: Response) => {
-  //   const user = await this.getUser(req, res);
-  //   user && res.json(user);
-  // };
+  public authorizeAdmin = async (req: Request, res: Response) => {
+    const user = await this.getUser(req, res);
+    user && res.json(user);
+  };
 
   public withAuthMW = (req: Request, res: Response, next: NextFunction) =>
     this.getUser(req, res).then((user) => {
@@ -52,14 +52,14 @@ class AuthService {
       }
     });
 
-  // public withAdminAuthMW = (req: Request, res: Response, next: NextFunction) =>
-  //   this.getUser(req, res).then((user) => {
-  //     if (user?.is_admin) {
-  //       next();
-  //     } else {
-  //       res.status(401).send("Unauthorized");
-  //     }
-  //   });
+  public withAdminAuthMW = (req: Request, res: Response, next: NextFunction) =>
+    this.getUser(req, res).then((user) => {
+      if (user?.is_admin) {
+        next();
+      } else {
+        res.status(401).send("Unauthorized");
+      }
+    });
 
   private getAuthToken = (req: Request) => {
     let authToken = "";

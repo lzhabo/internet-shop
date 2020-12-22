@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { useForm } from "antd/es/form/Form";
-import { UploadOutlined } from "@ant-design/icons";
+import uploadService from "shop-common/services/uploadService";
 import {
   Form,
   Input,
@@ -49,6 +49,16 @@ const NewProductForm: React.FC<IProps> = () => {
         layout="horizontal"
         onFinish={handleFinish}
       >
+        <input
+          type={"file"}
+          onChange={async (e) => {
+            if (e.target.files && e.target.files[0]) {
+              const file = e.target.files[0];
+              const link = await uploadService.uploadFile(file);
+              console.log(link);
+            }
+          }}
+        />
         <Form.Item
           name="name"
           label="Product Name"

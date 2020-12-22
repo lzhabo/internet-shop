@@ -28,7 +28,6 @@ export default class ProductStore {
 
   @computed get emptyProductItem() {
     return {
-      // id: ObjectId(),
       name: "",
       price: 0,
       description: "",

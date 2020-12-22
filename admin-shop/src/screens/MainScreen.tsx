@@ -8,6 +8,9 @@ import { Route, Switch } from "react-router-dom";
 import NewProductForm from "@components/NewProductForm";
 import { useHistory } from "react-router-dom";
 import RegistrationForm from "@components/RegistrationForm";
+import { useStores } from "@stores";
+import { useObserver } from "mobx-react-lite";
+import Loading from "@components/Loading";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -19,8 +22,14 @@ const Root = styled.div`
 `;
 
 const MainScreen: React.FC<IProps> = () => {
+  const rootStore = useStores();
+  const initialized = useObserver(() => rootStore.initialized);
   const history = useHistory();
-  return (
+  return !initialized ? (
+    <Root>
+      <Loading />
+    </Root>
+  ) : (
     <Root>
       <Layout style={{ minHeight: "100vh" }}>
         <Sider collapsible>

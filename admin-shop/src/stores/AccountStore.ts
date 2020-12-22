@@ -41,11 +41,8 @@ export default class AccountStore {
       .then(() =>
         firebaseService.auth.signInWithEmailAndPassword(login, password)
       )
-      .catch(
-        (e) => notification.error({ message: e.message ?? "Something wrong!" })
-        // this.rootStore.notificationStore.error({
-        //   message: e.message ?? "Something wrong!",
-        // })
+      .catch((e) =>
+        notification.error({ message: e.message ?? "Something wrong!" })
       );
 
   @action
@@ -65,9 +62,6 @@ export default class AccountStore {
       } catch (e) {
         await firebaseService.auth.signOut();
         notification.error({ message: e.message ?? "Something wrong!" });
-        // this.rootStore.notificationStore.error({
-        //   message: e.message ?? "Something wrong!",
-        // });
       }
     }
   }

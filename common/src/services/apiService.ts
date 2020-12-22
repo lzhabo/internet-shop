@@ -10,6 +10,7 @@ interface IParams {
     | string
     | URLSearchParams;
   data?: any;
+  type?: "file";
 }
 
 export class ApiService {
@@ -28,7 +29,10 @@ export class ApiService {
 
   async makeApiRequest(path: string, params?: IParams): Promise<any> {
     const defaultParams = { method: "GET" };
-    const { method, data, searchParameters } = { ...defaultParams, ...params };
+    const { method, data, searchParameters, type } = {
+      ...defaultParams,
+      ...params,
+    };
     if (!(this._apiBase && this._auth)) {
       throw new Error("Network Service not Initialized");
     }
@@ -40,10 +44,10 @@ export class ApiService {
     return this.fetch(url.href, {
       method: method,
       headers: {
-        "Content-type": "application/json",
+        ...(type === "file" ? {} : { "Content-type": "application/json" }),
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(data),
+      body: type === "file" ? data : JSON.stringify(data),
     }).then(async (response) => {
       if (response.ok) {
         return response.json();

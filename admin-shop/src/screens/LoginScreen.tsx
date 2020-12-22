@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { Form, Input, Button, Checkbox, notification } from "antd";
+import { Button, Checkbox, Form, Input } from "antd";
+import { useStores } from "@stores";
 
 interface IProps {}
 
 interface IFormValues {
-  name: string;
+  login: string;
   password: string;
+  remember?: boolean;
 }
 
 const Root = styled.div`
@@ -25,12 +27,11 @@ const tailLayout = {
 };
 
 const LoginScreen: React.FC<IProps> = () => {
-  const onFinishFailed = (errorInfo: IFormValues) => {
-    notification.error({ message: "We couldn't log you in" });
-  };
-  const handleFinish = (v: IFormValues) => {
-    notification.success({ message: "success" });
-  };
+  const { accountStore } = useStores();
+
+  const handleFinish = (v: IFormValues) =>
+    accountStore.signInWithEmailAndPassword(v.login, v.password, v.remember);
+
   return (
     <Root>
       <Form
@@ -44,8 +45,8 @@ const LoginScreen: React.FC<IProps> = () => {
         // onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label="Username"
-          name="username"
+          label="Login"
+          name="login"
           rules={[{ required: true, message: "Please input your username!" }]}
         >
           <Input />
@@ -65,7 +66,7 @@ const LoginScreen: React.FC<IProps> = () => {
 
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Login
           </Button>
         </Form.Item>
       </Form>

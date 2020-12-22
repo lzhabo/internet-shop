@@ -5,12 +5,12 @@ import * as config from "../config";
 
 class FirebaseService {
   auth: firebase.auth.Auth;
-  // storage: firebase.storage.Storage;
+  storage: firebase.storage.Storage;
 
   get config() {
     return {
       credential: firebase.credential.cert(config.googleServiceAccount),
-      // storageBucket: config.googleStorageBucket,
+      storageBucket: config.googleStorageBucket,
       databaseURL: config.firebaseDatabaseUrl,
     } as firebase.AppOptions;
   }
@@ -18,37 +18,33 @@ class FirebaseService {
   constructor() {
     firebase.initializeApp(this.config);
     this.auth = firebase.auth();
-    // this.storage = firebase.storage();
+    this.storage = firebase.storage();
   }
 
-  // uploadFile = async (file: UploadedFile) => {
-  //   const path = UUID.v4() + "." + file.mimetype.replace("image/", "");
-  //   const uuid = UUID.v4();
-  //   const bucket = this.storage.bucket(process.env.STORAGE_BUCKET);
-  //   return await bucket
-  //     .file(path)
-  //     .save(file.data, {
-  //       metadata: {
-  //         metadata: { firebaseStorageDownloadTokens: uuid },
-  //         fileName: file.name,
-  //         contentType: file.mimetype,
-  //         size: file.size,
-  //       },
-  //     })
-  //     .then(() => {
-  //       return {
-  //         downloadUrl:
-  //           "https://firebasestorage.googleapis.com/v0/b/" +
-  //           bucket.name +
-  //           "/o/" +
-  //           encodeURIComponent(path) +
-  //           "?alt=media&token=" +
-  //           uuid,
-  //         fileName: file.name,
-  //         path,
-  //       };
-  //     });
-  // };
+  uploadFile = async (file: UploadedFile) => {
+    const path = UUID.v4() + "." + file.mimetype.replace("image/", "");
+    const uuid = UUID.v4();
+    const bucket = this.storage.bucket(process.env.STORAGE_BUCKET);
+    return await bucket
+      .file(path)
+      .save(file.data, {
+        metadata: {
+          metadata: { firebaseStorageDownloadTokens: uuid },
+          fileName: file.name,
+          contentType: file.mimetype,
+          size: file.size,
+        },
+      })
+      .then(
+        () =>
+          "https://firebasestorage.googleapis.com/v0/b/" +
+          bucket.name +
+          "/o/" +
+          encodeURIComponent(path) +
+          "?alt=media&token=" +
+          uuid
+      );
+  };
 }
 
 export default new FirebaseService();

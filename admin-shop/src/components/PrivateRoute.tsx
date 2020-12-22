@@ -8,6 +8,7 @@ interface IProps extends RouteProps {}
 
 const PrivateRoute: React.FC<IProps> = ({ children, ...rest }) => {
   const { accountStore } = useStores();
+  console.log(accountStore.admin);
   return (
     <Route
       {...rest}
@@ -18,8 +19,6 @@ const PrivateRoute: React.FC<IProps> = ({ children, ...rest }) => {
               <Redirect
                 to={{ pathname: "/login", state: { from: location } }}
               />
-            ) : accountStore.admin.is_admin !== false ? (
-              <div>You don't have access!</div>
             ) : (
               <React.Fragment>{children}</React.Fragment>
             )

@@ -7,9 +7,9 @@ export default class RootStore {
   public accountStore: AccountStore;
 
   constructor(initState?: any) {
+    this.accountStore = new AccountStore(this);
     this.routerStore = new RouterStore(this);
     this.productStore = new ProductStore(this);
-    this.accountStore = new AccountStore(this);
 
     reaction(
       () => this.accountStore.admin,

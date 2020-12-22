@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Footer from "@components/Footer";
+import SalesHeader from "@components/SalesHeader";
 
 interface IProps {}
 
@@ -13,7 +14,8 @@ const Root = styled.div`
 const App: React.FunctionComponent<IProps> = () => {
   return (
     <Root>
-      <Footer />
+      <SalesHeader />
+      {/*<Footer />*/}
     </Root>
   );
 };

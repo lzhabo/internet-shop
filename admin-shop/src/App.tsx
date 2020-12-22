@@ -19,13 +19,7 @@ const Root = styled.div`
 `;
 
 const App: React.FunctionComponent<IProps> = () => {
-  const rootStore = useStores();
-  const initializing = useObserver(() => rootStore.initialized);
-  return initializing ? (
-    <Root>
-      <Loading />
-    </Root>
-  ) : (
+  return (
     <Root>
       <Switch>
         <Route path={ROUTES.LOGIN} exact>
