@@ -6,6 +6,7 @@ export interface IImage {
 }
 
 export interface IProduct {
+  _id: string;
   name: string;
   price: number;
   photos?: string[];
@@ -14,6 +15,7 @@ export interface IProduct {
   size: number;
   material: string;
   type: string;
+  amount: number;
 }
 
 export interface IAdmin {
@@ -21,4 +23,25 @@ export interface IAdmin {
   phone_number: string;
   email: string;
   is_admin: boolean;
+}
+
+export interface ICustomer {
+  name: string;
+  surname: string;
+  address: IAddress;
+  phone: string;
+  email?: string;
+}
+
+export interface IOrder {
+  number: string;
+  products: IProduct[];
+  customer: ICustomer;
+  shipping?: string;
+}
+
+export interface IAddress {
+  country: string;
+  city: string;
+  street: string;
 }

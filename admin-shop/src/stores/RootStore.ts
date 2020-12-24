@@ -1,5 +1,5 @@
 import { RouterStore, ProductStore, AccountStore } from "./index";
-import { computed, reaction, when } from "mobx";
+import { computed, reaction } from "mobx";
 
 export default class RootStore {
   public routerStore: RouterStore;

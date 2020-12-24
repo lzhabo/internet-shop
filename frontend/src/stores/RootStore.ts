@@ -14,8 +14,6 @@ export default class RootStore {
     this.productStore = new ProductStore(this);
     this.accountStore = new AccountStore(this);
 
-    console.log(this);
-
     when(
       () => this.accountStore.initialized,
       () => Promise.all([this.productStore.sync()]).then()

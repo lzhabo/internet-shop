@@ -2,7 +2,14 @@ import styled from "@emotion/styled";
 import React from "react";
 import { useStores } from "@stores";
 import { useObserver } from "mobx-react-lite";
-import { Table } from "antd";
+import { Card, Skeleton, Avatar } from "antd";
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+
+const { Meta } = Card;
 
 interface IProps {}
 
@@ -12,45 +19,26 @@ const Root = styled.div`
   width: 100%;
 `;
 
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-  },
-  {
-    title: "Price",
-    dataIndex: "price",
-    key: "price",
-  },
-  {
-    title: "Size, cm",
-    dataIndex: "size",
-    key: "size",
-  },
-  {
-    title: "Type",
-    dataIndex: "type",
-    key: "type",
-  },
-  {
-    title: "Material",
-    dataIndex: "material",
-    key: "material",
-  },
-
-  {
-    title: "Description",
-    dataIndex: "description",
-    key: "description",
-  },
-];
-
 const Products: React.FC<IProps> = () => {
   const { productStore } = useStores();
   return useObserver(() => (
     <Root>
-      <Table dataSource={productStore.products} columns={columns} />;
+      {productStore.products.map((product, index) => (
+        <Card
+          style={{ width: 300, marginTop: 16 }}
+          actions={[
+            <SettingOutlined key="setting" />,
+            <EditOutlined key="edit" />,
+            <EllipsisOutlined key="ellipsis" />,
+          ]}
+        >
+          <Skeleton avatar>
+            avatar={<Avatar src={product.photos} alt="product pic" />}
+            title={product.name}
+            description="This is the description"
+          </Skeleton>
+        </Card>
+      ))}
     </Root>
   ));
 };

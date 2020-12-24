@@ -1,7 +1,7 @@
 import { RootStore } from "./index";
 import { action, computed, observable, runInAction } from "mobx";
 import { productsService } from "../services";
-import { IProduct } from "../interfaces";
+import { IProduct } from "shop-common/models";
 import { notification } from "antd";
 
 export default class ProductStore {
@@ -26,6 +26,10 @@ export default class ProductStore {
     return this.products[0] ?? undefined;
   }
 
+  @action getProductById(id: string) {
+    return this.products.find((product) => product._id === id);
+  }
+
   @computed get emptyProductItem() {
     return {
       name: "",
@@ -47,6 +51,7 @@ export default class ProductStore {
     description: string;
     disabled: boolean;
     type: string;
+    amount: number;
   }) => {
     try {
       const product = await productsService.createProduct(data);
