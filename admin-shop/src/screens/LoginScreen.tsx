@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 import { useStores } from "@stores";
+import { useParams } from "react-router-dom";
 
 interface IProps {}
 
@@ -42,7 +43,6 @@ const LoginScreen: React.FC<IProps> = () => {
         name="basic"
         initialValues={{ remember: true }}
         onFinish={handleFinish}
-        // onFinishFailed={onFinishFailed}
       >
         <Form.Item
           label="Login"

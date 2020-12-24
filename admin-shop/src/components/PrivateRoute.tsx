@@ -8,7 +8,6 @@ interface IProps extends RouteProps {}
 
 const PrivateRoute: React.FC<IProps> = ({ children, ...rest }) => {
   const { accountStore } = useStores();
-  console.log(accountStore.admin);
   return (
     <Route
       {...rest}

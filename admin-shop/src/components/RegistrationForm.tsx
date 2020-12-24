@@ -47,22 +47,7 @@ const RegistrationForm: React.FC<IProps> = () => {
             ]}
           />
         </Form.Item>
-        <Form.Item label="Cascader">
-          <Cascader
-            options={[
-              {
-                value: "zhejiang",
-                label: "Zhejiang",
-                children: [
-                  {
-                    value: "hangzhou",
-                    label: "Hangzhou",
-                  },
-                ],
-              },
-            ]}
-          />
-        </Form.Item>
+        <Form.Item label="Cascader"></Form.Item>
         <Form.Item label="DatePicker">
           <DatePicker />
         </Form.Item>

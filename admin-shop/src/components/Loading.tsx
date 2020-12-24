@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { Spin } from "antd";
 
 interface IProps {}
 
@@ -13,6 +14,10 @@ const Root = styled.div`
 `;
 
 const Loading: React.FC<IProps> = () => {
-  return <Root>Loading...</Root>;
+  return (
+    <Root>
+      <Spin tip="Loading..." />
+    </Root>
+  );
 };
 export default Loading;

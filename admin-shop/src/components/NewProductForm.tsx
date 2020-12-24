@@ -10,8 +10,12 @@ import {
   notification,
   Select,
   Upload,
+  Avatar,
+  Space,
+  Image,
 } from "antd";
 import { useStores } from "@stores";
+import ImageUpload from "@components/ImageUpload";
 
 interface IProps {}
 
@@ -22,6 +26,7 @@ interface IFormValues {
   images?: string[];
   size: number;
   type: string;
+  amount: number;
 }
 
 const Root = styled.div`
@@ -32,12 +37,14 @@ const Root = styled.div`
 const NewProductForm: React.FC<IProps> = () => {
   const [form] = useForm();
   const { productStore } = useStores();
-
+  const [imgs, setImgs] = useState<string[]>([]);
   const handleFinish = (v: IFormValues) => {
-    productStore.add({ ...productStore.emptyProductItem, ...v }).then(() => {
-      form.resetFields();
-      notification.success({ message: "success" });
-    });
+    productStore
+      .add({ ...productStore.emptyProductItem, ...v, images: imgs })
+      .then(() => {
+        form.resetFields();
+        notification.success({ message: "success" });
+      });
   };
 
   return (
@@ -49,16 +56,12 @@ const NewProductForm: React.FC<IProps> = () => {
         layout="horizontal"
         onFinish={handleFinish}
       >
-        <input
-          type={"file"}
-          onChange={async (e) => {
-            if (e.target.files && e.target.files[0]) {
-              const file = e.target.files[0];
-              const link = await uploadService.uploadFile(file);
-              console.log(link);
-            }
-          }}
-        />
+        <ImageUpload values={imgs} onChange={setImgs} />
+        <Space>
+          {imgs?.map((i, k) => (
+            <Image style={{ height: 64, width: "auto" }} src={i} key={k} />
+          ))}
+        </Space>
         <Form.Item
           name="name"
           label="Product Name"
@@ -82,6 +85,13 @@ const NewProductForm: React.FC<IProps> = () => {
           name="size"
           label="Size"
           rules={[{ required: true, message: "Please input size" }]}
+        >
+          <InputNumber min={0} />
+        </Form.Item>
+        <Form.Item
+          name="amount"
+          label="Amount"
+          rules={[{ required: true, message: "Please amount size" }]}
         >
           <InputNumber min={0} />
         </Form.Item>
