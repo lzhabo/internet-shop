@@ -27,7 +27,7 @@ export default class ProductStore {
   }
 
   @action getProductById(id: string) {
-    return this.products.find((product) => product._id === id);
+    return productsService.product(id);
   }
 
   @computed get emptyProductItem() {

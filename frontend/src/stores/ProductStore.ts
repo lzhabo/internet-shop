@@ -1,7 +1,7 @@
 import { RootStore } from "./index";
 import { action, computed, observable, runInAction } from "mobx";
 import { productsService } from "../services";
-import { IProduct } from "../interfaces";
+import { IProduct } from "shop-common/models";
 
 export default class ProductStore {
   rootStore: RootStore;
@@ -14,8 +14,8 @@ export default class ProductStore {
   @observable products: IProduct[] = [];
 
   @action sync = async () => {
-    console.log(this.rootStore.accountStore.initialized);
     const products = await productsService.products();
+    console.log("sync in ProductStore", products);
     runInAction(() => {
       this.products = products;
       this.initialized = true;
@@ -35,8 +35,10 @@ export default class ProductStore {
     };
   }
 
-  @action
-  add = () => {};
+  get filterProductsByType() {
+    console.log("filter ", this.products);
+    return this.products.filter((p) => p.type === "rings");
+  }
 
   @computed get activeProduct(): IProduct | undefined {
     return this.products[0] ?? undefined;

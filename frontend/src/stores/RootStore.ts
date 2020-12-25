@@ -1,5 +1,5 @@
 import { SettingsStore, RouterStore, ProductStore } from "./index";
-import { when } from "mobx";
+import { when, reaction } from "mobx";
 import AccountStore from "@stores/AccountStore";
 
 export default class RootStore {
@@ -10,9 +10,10 @@ export default class RootStore {
 
   constructor(initState?: any) {
     this.settingsStore = new SettingsStore(this);
-    this.routerStore = new RouterStore(this);
-    this.productStore = new ProductStore(this);
     this.accountStore = new AccountStore(this);
+    this.productStore = new ProductStore(this);
+    this.routerStore = new RouterStore(this);
+    console.log("RootStore constructor ", this.productStore.products);
 
     when(
       () => this.accountStore.initialized,

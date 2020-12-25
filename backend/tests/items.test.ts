@@ -17,22 +17,11 @@ function randomInteger(min: number, max: number) {
   return Math.floor(rand);
 }
 
-describe("products", () => {
-  it("create", async () => {
-    await axios.post("http://localhost:5000/api/v1/products", {
-      name: "Test",
-      description: "test",
-      isFragile: true,
-      price: 1000,
-    });
-  });
-});
-
 //fill db
 describe("fill db", () => {
   it("fill products", async () => {
     await Promise.all(
-      Array.from({ length: 15 }, async () =>
+      Array.from({ length: 10 }, async () =>
         axios.post("http://localhost:5000/api/v1/products", {
           name: "Product",
           // photos: await getRandomPhotoUrl(),
@@ -42,8 +31,8 @@ describe("fill db", () => {
           price: randomInteger(500, 2000),
           description: await getRandomDescription(),
           disabled: true,
-          material: "Silver",
-          type: "Ring",
+          material: "silver",
+          type: "anklet",
           size: 5.5,
         })
       )

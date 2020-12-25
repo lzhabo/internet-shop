@@ -11,8 +11,8 @@ export default class AccountStore {
       if (user) {
         this.initialized = true;
       } else {
-        // this.initialized = true;
-        // firebaseService.auth.signInAnonymously();
+        this.initialized = true;
+        firebaseService.auth.signInAnonymously();
       }
     });
   }

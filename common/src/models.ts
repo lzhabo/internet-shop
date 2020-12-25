@@ -9,6 +9,7 @@ export interface IProduct {
   _id: string;
   name: string;
   price: number;
+  oldPrice?: number;
   photos?: string[];
   description?: string;
   disabled?: boolean;
@@ -16,6 +17,7 @@ export interface IProduct {
   material: string;
   type: string;
   amount: number;
+  isOnSale?: boolean;
 }
 
 export interface IAdmin {
