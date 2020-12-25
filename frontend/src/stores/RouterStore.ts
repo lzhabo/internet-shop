@@ -5,6 +5,7 @@ import { observable, runInAction } from "mobx";
 export enum ROUTES {
   ROOT = "/",
   COLLECTIONS = "/collections",
+  COLLECTIONS_TYPE = "/collections/:type",
 }
 
 export default class RouterStore {

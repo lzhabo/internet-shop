@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { Column } from "@components/flex";
-import { FlexContainer } from "@components/FlexContaner";
+import { FlexContainer } from "@components/FlexContainer";
 
 interface IProps {}
 
