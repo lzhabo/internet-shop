@@ -3,8 +3,11 @@ import styled from "@emotion/styled";
 import Footer from "@components/Footer";
 import { Route, Switch } from "react-router-dom";
 import { ROUTES } from "./stores/RouterStore";
-import All from "@components/Collections/All";
-import SalesHeader from "@components/SalesHeader";
+import SalesHeader from "@components/Header/SalesHeader";
+import CollectionsType from "@components/Collections/CollectionsType";
+import CollectionsList from "@components/Collections/CollectionsList";
+import ProductPage from "@components/ProductPage";
+import Header from "@components/Header/Header";
 
 interface IProps {}
 
@@ -13,23 +16,23 @@ const Root = styled.div`
   flex-direction: column;
   width: 100%;
 `;
-
 const App: React.FunctionComponent<IProps> = () => {
   return (
     <Root>
       <SalesHeader />
-      {/*<Switch>*/}
-      {/*  <Route path={ROUTES.COLLECTIONS}>*/}
-      {/*    <All />*/}
-      {/*  </Route>*/}
-      {/*</Switch>*/}
-      {/*<Footer />*/}
+      <Header />
       <Switch>
         <Route path={ROUTES.COLLECTIONS_TYPE} exact>
-          <All />
+          <CollectionsType />
         </Route>
-        <Route path={ROUTES.COLLECTIONS} exact></Route>
+        <Route path={ROUTES.COLLECTIONS} exact>
+          <CollectionsList />
+        </Route>
+        <Route path={ROUTES.PRODUCT} exact>
+          <ProductPage />
+        </Route>
       </Switch>
+      <Footer />
     </Root>
   );
 };

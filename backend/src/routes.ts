@@ -14,6 +14,12 @@ router.route("/products/").post(authService.withAdminAuthMW, productController.c
 router.route("/products/:id").put(authService.withAdminAuthMW, productController.updateProduct);
 router.route("/products/:id").delete(authService.withAdminAuthMW, productController.deleteProduct);
 
+// router.get("/products/", productController.getAllProducts);
+// router.get("/products/:id", productController.getProductById);
+// router.post("/products/", productController.createProduct);
+// router.put("/products/:id", productController.updateProduct);
+// router.delete("/products/:id", productController.deleteProduct);
+
 //auth
 router.post("/auth/admin", authService.authorizeAdmin);
 // router.post("/auth/user", authService.);

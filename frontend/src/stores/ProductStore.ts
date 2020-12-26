@@ -15,7 +15,6 @@ export default class ProductStore {
 
   @action sync = async () => {
     const products = await productsService.products();
-    console.log("sync in ProductStore", products);
     runInAction(() => {
       this.products = products;
       this.initialized = true;

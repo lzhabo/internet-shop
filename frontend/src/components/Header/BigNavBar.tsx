@@ -8,7 +8,7 @@ const Root = styled.div`
   flex-direction: column;
 `;
 
-const Collections: React.FC<IProps> = () => {
+const BigNavBar: React.FC<IProps> = () => {
   return <Root></Root>;
 };
-export default Collections;
+export default BigNavBar;
