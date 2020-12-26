@@ -3,8 +3,10 @@ import styled from "@emotion/styled";
 import Footer from "@components/Footer";
 import { Route, Switch } from "react-router-dom";
 import { ROUTES } from "./stores/RouterStore";
-import All from "@components/Collections/All";
 import SalesHeader from "@components/SalesHeader";
+import CollectionsType from "@components/Collections/CollectionsType";
+import { useStores } from "@stores";
+import ProductCard from "@components/ProductCard";
 
 interface IProps {}
 
@@ -13,7 +15,13 @@ const Root = styled.div`
   flex-direction: column;
   width: 100%;
 `;
-
+const data = {
+  photos: [
+    "https://cdn.shopify.com/s/files/1/0459/0744/3880/products/wave-bracelet_4769250c-cb59-4da5-a3cb-0da0a6d707f1_600x.jpg?v=1599236327",
+  ],
+  name: "ring",
+  price: 100,
+};
 const App: React.FunctionComponent<IProps> = () => {
   return (
     <Root>
@@ -26,7 +34,7 @@ const App: React.FunctionComponent<IProps> = () => {
       {/*<Footer />*/}
       <Switch>
         <Route path={ROUTES.COLLECTIONS_TYPE} exact>
-          <All />
+          <CollectionsType />
         </Route>
         <Route path={ROUTES.COLLECTIONS} exact></Route>
       </Switch>

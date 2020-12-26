@@ -4,13 +4,14 @@ import { useStores } from "@stores";
 import ProductCard from "@components/ProductCard";
 import { useParams } from "react-router-dom";
 import { IProduct } from "shop-common/models";
-import { computed } from "mobx";
+import { useObserver } from "mobx-react-lite";
 
 interface IProps {}
 
 const Root = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 interface ParamTypes {
@@ -21,27 +22,14 @@ const CollectionsType: React.FC<IProps> = () => {
   const { type } = useParams<ParamTypes>();
   const { productStore } = useStores();
 
-  let products = productStore.products;
-  switch (type) {
-    // case "all":
-    // default:
-    //   break;
-    case "rings":
-    case "anklets":
-    case "necklaces":
-    case "bracelets":
-    case "earrings":
-      products = productStore.filterProductsByType;
-    // break;
-  }
-  console.log(products);
-
-  return (
+  return useObserver(() => (
     <Root>
-      {products.map((product, index) => (
-        <div>{product._id}</div>
-      ))}
+      {productStore.products
+        .filter((p) => p.type === type)
+        .map((product, index) => (
+          <ProductCard product={product} key={index} />
+        ))}
     </Root>
-  );
+  ));
 };
 export default CollectionsType;
