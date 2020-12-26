@@ -13,7 +13,7 @@ export default class RootStore {
     this.accountStore = new AccountStore(this);
     this.productStore = new ProductStore(this);
     this.routerStore = new RouterStore(this);
-
+    console.log(this);
     when(
       () => this.accountStore.initialized,
       () => Promise.all([this.productStore.sync()]).then()

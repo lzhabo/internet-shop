@@ -21,19 +21,21 @@ function randomInteger(min: number, max: number) {
 describe("fill db", () => {
   it("fill products", async () => {
     await Promise.all(
-      Array.from({ length: 10 }, async () =>
+      Array.from({ length: 3 }, async () =>
         axios.post("http://localhost:5000/api/v1/products", {
           name: "Product",
-          // photos: await getRandomPhotoUrl(),
           photos: await Promise.all(
             Array.from({ length: randomInteger(1, 8) }, async () => await getRandomPhotoUrl())
           ),
-          price: randomInteger(500, 2000),
+          price: randomInteger(5, 30),
           description: await getRandomDescription(),
           disabled: true,
-          material: "silver",
-          type: "anklet",
+          material: ["silver", "gold"],
+          type: "earrings",
           size: 5.5,
+          oldPrice: randomInteger(5, 30),
+          isOnSale: false,
+          amount: 100,
         })
       )
     );

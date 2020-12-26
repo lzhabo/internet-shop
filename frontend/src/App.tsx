@@ -28,7 +28,7 @@ const App: React.FunctionComponent<IProps> = () => {
         <Route path={ROUTES.COLLECTIONS} exact>
           <CollectionsList />
         </Route>
-        <Route path={ROUTES.PRODUCT} exact>
+        <Route path={ROUTES.PRODUCT_ID} exact>
           <ProductPage />
         </Route>
       </Switch>
