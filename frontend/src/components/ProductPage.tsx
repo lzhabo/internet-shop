@@ -25,7 +25,7 @@ const ProductPage: React.FC<IProps> = () => {
     return productStore.products;
   });
   const product = products.find((p) => p._id === id);
-
+  console.log("product page");
   if (product !== undefined)
     return (
       <Root>

@@ -14,7 +14,7 @@ export interface IProduct {
   description?: string;
   disabled?: boolean;
   size: number;
-  material: string;
+  material: string[];
   type: string;
   amount: number;
   isOnSale?: boolean;

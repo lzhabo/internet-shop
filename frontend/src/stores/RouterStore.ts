@@ -6,7 +6,7 @@ export enum ROUTES {
   ROOT = "/",
   COLLECTIONS = "/collections",
   COLLECTIONS_TYPE = "/collections/:type",
-  PRODUCT = "/products/:id",
+  PRODUCT_ID = "/collections/:type/:id",
 }
 
 export default class RouterStore {
