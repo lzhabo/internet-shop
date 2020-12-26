@@ -13,7 +13,6 @@ export default class RootStore {
     this.accountStore = new AccountStore(this);
     this.productStore = new ProductStore(this);
     this.routerStore = new RouterStore(this);
-    console.log("RootStore constructor ", this.productStore.products);
 
     when(
       () => this.accountStore.initialized,

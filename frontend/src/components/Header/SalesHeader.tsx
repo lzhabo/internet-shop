@@ -10,7 +10,6 @@ const Root = styled.div`
   color: #ffff;
   justify-content: center;
   align-items: center;
-  //min-height: 42px;
 `;
 const Text = styled.div`
   font-family: Montserrat;

@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import React from "react";
+import CollectionItem from "@components/Collections/CollectionItem";
 
 interface IProps {}
 
 const Root = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 const slidesData = [
   {
@@ -39,7 +41,14 @@ const slidesData = [
       "https://cdn.shopify.com/s/files/1/0459/0744/3880/products/wave-ring_700x.jpg?v=1599235646",
   },
 ];
-const Collections: React.FC<IProps> = () => {
-  return <Root></Root>;
+const CollectionsList: React.FC<IProps> = () => {
+  return (
+    <Root>
+      {slidesData.map((slide, index) => (
+        <CollectionItem {...slide} />
+      ))}
+    </Root>
+  );
 };
-export default Collections;
+
+export default CollectionsList;

@@ -39,7 +39,7 @@ const noPic = "https://i.imgur.com/sjDBHUW.jpg";
 const ProductCard: React.FC<IProps> = ({ product }) => {
   return (
     <Root>
-      {product.photos != undefined ? (
+      {product.photos !== undefined ? (
         <Img src={product.photos[0] !== undefined ? product.photos[0] : ""} />
       ) : (
         <Img src={noPic} />

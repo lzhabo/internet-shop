@@ -1,17 +1,16 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { Column } from "@components/flex";
-import { FlexContainer } from "@components/FlexContainer";
 
 interface IProps {}
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #1d1d1f;
+  background-color: #7f9aa3;
 `;
 const Title = styled.div`
-  font-family: Inter;
+  font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -21,7 +20,7 @@ const Title = styled.div`
   padding: 5px 0 5px;
 `;
 const SubTitle = styled.div`
-  font-family: Inter;
+  font-family: Nunito Sans;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -57,9 +56,12 @@ const Footer: React.FC<IProps> = () => {
     <Root>
       <Container>
         <Column>
-          <Title>Покупателям</Title>
-          <SubTitle>Частые вопросы</SubTitle>
-          <SubTitle>Каталог</SubTitle>
+          <Title>About Us</Title>
+          <SubTitle>
+            We donate a portion of every purchase to organizations that are
+            cleaning our oceans and rescuing marine wildlife.
+          </SubTitle>
+          <SubTitle>Need to get in touch ?</SubTitle>
           <SubTitle>Доставка и самовывоз</SubTitle>
         </Column>
         <Column>
@@ -69,25 +71,12 @@ const Footer: React.FC<IProps> = () => {
           <SubTitle>Политика конфиденциальности</SubTitle>
         </Column>
         <Column>
-          <Title>Контакты</Title>
-          <SubTitle>27083, г. Москва, ул. 8 Марта, д. 1, стр. 12.</SubTitle>
-          <SubTitle>+7 (495) 210-79-36</SubTitle>
+          <Title>Help</Title>
+          <SubTitle>Contact Us</SubTitle>
+          <SubTitle>Privacy Policy</SubTitle>
           <SubTitle>shop@mpamed.ru</SubTitle>
         </Column>
-        <Column>
-          <Title>Самовывоз</Title>
-          <SubTitle>
-            г. Москва, ул. Складочная, д. 1, стр. 1, <br /> вход 4 подъезд 5А
-            "Бизнес парк Станколит"
-            <br /> (склад «М.П.А. Медицинские партнеры»)
-          </SubTitle>
-          <SubTitle>с 9:30 до 17:45 в рабочие дни</SubTitle>
-        </Column>
       </Container>
-      <FlexContainer style={{ height: 80 }} alignItems="center">
-        <Rights>© 2020 М.П.А. Медицинские партнеры</Rights>
-        <div />
-      </FlexContainer>
     </Root>
   );
 };
