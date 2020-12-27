@@ -12,6 +12,19 @@ class AuthService {
     console.log(await firebaseService.auth.generatePasswordResetLink(email));
   };
 
+  public createUser = async (email: string, password: string, name: string, lastName: string) => {
+    // const user = await firebaseService.auth.createUser({ email });
+    const user = await firebaseService.auth.createUser({ email, password });
+    console.log("user after createUser", user);
+    const info = await firebaseService.auth.setCustomUserClaims(user.uid, {
+      email,
+      name,
+      lastName,
+    });
+    console.log("info after setCustomUserClaims ", info);
+    // console.log(await firebaseService.auth.generatePasswordResetLink(email));
+  };
+
   public getUser = async (req: Request, res: Response) => {
     const authToken = this.getAuthToken(req);
     try {

@@ -12,7 +12,11 @@ interface IProps {
 const Root = styled.div`
   display: flex;
   flex-direction: column-reverse;
+  align-items: center;
   margin: 10px;
+  @media (min-width: 1440px) {
+    align-items: normal;
+  }
 `;
 const Title = styled.div`
   font-family: Montserrat, sans-serif;
@@ -25,12 +29,19 @@ const Title = styled.div`
   font-size: 22px;
 `;
 const Img = styled.img`
-  width: auto;
+  width: 100%;
+  max-width: 300px;
   height: 500px;
+  @media (min-width: 1440px) {
+    //height: 500px;
+  }
 `;
 const Div = styled.div`
   position: absolute;
   padding: 20px;
+  & > * {
+    //margin: 10px;
+  }
 `;
 const CollectionItem: React.FC<IProps> = ({ pic, type }) => {
   const history = useHistory();
