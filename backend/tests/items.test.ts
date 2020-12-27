@@ -56,4 +56,7 @@ describe("auth things", () => {
   it("create admin", async () => {
     await authService.createAdmin("lidia.zhabo99@gmail.com");
   });
+  it("create user", async () => {
+    await authService.createUser("lidia@gmail.com", "123456", "Lidia", "Zhabo");
+  });
 });

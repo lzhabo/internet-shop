@@ -26,7 +26,7 @@ const Title = styled.div`
 `;
 
 const Img = styled.img`
-  width: 270px;
+  width: 250px;
   height: 270px;
   cursor: pointer;
 `;

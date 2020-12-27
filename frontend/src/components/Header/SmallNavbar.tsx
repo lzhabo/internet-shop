@@ -11,23 +11,24 @@ interface IProps {
 
 const Root = styled.div`
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
   background: #41545a;
   position: fixed;
   top: 0;
   bottom: 0;
-  right: 0;
+  right: 25%;
   left: 0;
   padding: 0 16px;
   z-index: 3;
+  @media (min-width: 660px) {
+    right: 50%;
+  }
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 360px;
   @media (min-width: 1440px) {
     width: 640px;
   }
@@ -40,17 +41,19 @@ const CloseBtn = styled.img`
   position: absolute;
   left: 0;
   top: 0;
-  padding: 21px;
 `;
 const MenuTitle = styled.div`
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
-  line-height: 16px;
   text-transform: uppercase;
-  color: #a9afb7;
-  padding: 10px 0 10px;
+  padding: 12px 0 12px;
+
+  line-height: 30px;
+
+  letter-spacing: 2px;
+  color: #ffff;
 `;
 const navData = [
   { route: "rings", displayName: "rings" },

@@ -8,6 +8,8 @@ import CollectionsType from "@components/Collections/CollectionsType";
 import CollectionsList from "@components/Collections/CollectionsList";
 import ProductPage from "@components/ProductPage";
 import Header from "@components/Header/Header";
+import LoginPage from "@components/Auth/LoginPage";
+import RegistrationPage from "@components/Auth/RegistrationPage";
 
 interface IProps {}
 
@@ -30,6 +32,12 @@ const App: React.FunctionComponent<IProps> = () => {
         </Route>
         <Route path={ROUTES.PRODUCT_ID} exact>
           <ProductPage />
+        </Route>
+        <Route path={ROUTES.REGISTER} exact>
+          <RegistrationPage />
+        </Route>
+        <Route path={ROUTES.LOGIN} exact>
+          <LoginPage />
         </Route>
       </Switch>
       <Footer />
