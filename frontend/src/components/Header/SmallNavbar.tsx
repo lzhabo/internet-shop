@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import close from "../../assets/close.svg";
 import { Row } from "../flex";
 import { useHistory } from "react-router-dom";
 import { ROUTES } from "@stores/RouterStore";
@@ -74,7 +73,6 @@ const SmallNavbar: React.FC<IProps> = ({ onClose }) => {
 
   return (
     <Root>
-      {/*<CloseBtn onClick={onClose} src={close} />*/}
       <CloseIconWhite onClick={onClose} />
       <ContentWrapper>
         {navData.map((data, index) => (

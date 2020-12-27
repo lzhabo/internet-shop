@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import BagIcon from "@components/icons/BagIcon";
 import MenuIcon from "@components/icons/MenuIcon";
 import SearchIcon from "@components/icons/SearchIcon";
-import Basket from "@components/Header/Basket";
+import Basket from "@src/screens/Basket/Basket";
 
 interface IProps {}
 
