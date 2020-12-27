@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import BagIcon from "@components/icons/BagIcon";
 import MenuIcon from "@components/icons/MenuIcon";
 import SearchIcon from "@components/icons/SearchIcon";
+import Basket from "@components/Header/Basket";
 
 interface IProps {}
 
@@ -26,20 +27,22 @@ const Logo = styled.div`
 `;
 const Header: React.FC<IProps> = () => {
   const history = useHistory();
-  const [opened, setOpened] = useState(false);
+  const [openedMenu, setOpenedMenu] = useState(false);
+  const [openedBasket, setOpenedBasket] = useState(false);
   return (
     <Root>
       <div>
-        <MenuIcon onClick={() => setOpened(true)} />
+        <MenuIcon onClick={() => setOpenedMenu(true)} />
       </div>
       <div style={{ position: "relative" }}>
         <Logo>LOGO</Logo>
       </div>
       <div>
         <SearchIcon onClick={() => history.push(ROUTES.SEARCH)} />
-        <BagIcon onClick={() => history.push(ROUTES.LOGIN)} />
+        <BagIcon onClick={() => setOpenedBasket(true)} />
       </div>
-      {opened && <SmallNavbar onClose={() => setOpened(false)} />}
+      {openedMenu && <SmallNavbar onClose={() => setOpenedMenu(false)} />}
+      {openedBasket && <Basket onClose={() => setOpenedBasket(false)} />}
     </Root>
   );
 };
