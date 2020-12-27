@@ -4,7 +4,7 @@ import close from "../../assets/close.svg";
 import { Row } from "../flex";
 import { useHistory } from "react-router-dom";
 import { ROUTES } from "@stores/RouterStore";
-import CloseIconWhite from "@components/icons/CloseIconWhitegit";
+import CloseIconWhite from "@components/icons/CloseIconWhite";
 
 interface IProps {
   onClose: () => void;
