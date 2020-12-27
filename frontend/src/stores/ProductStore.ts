@@ -23,7 +23,6 @@ export default class ProductStore {
 
   @computed get emptyProducts() {
     return {
-      // id: uuidv4(),
       name: "",
       description: "",
       price: 0,
@@ -32,11 +31,6 @@ export default class ProductStore {
       type: "",
       material: "",
     };
-  }
-
-  get filterProductsByType() {
-    console.log("filter ", this.products);
-    return this.products.filter((p) => p.type === "rings");
   }
 
   @computed get activeProduct(): IProduct | undefined {

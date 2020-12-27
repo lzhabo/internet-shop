@@ -1,5 +1,5 @@
 import { firebaseService } from "@services";
-import { observable, action } from "mobx";
+import { observable } from "mobx";
 import { RootStore } from "@stores/index";
 
 export interface IUser {

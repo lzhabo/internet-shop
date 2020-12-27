@@ -22,7 +22,6 @@ router.route("/products/:id").delete(authService.withAdminAuthMW, productControl
 
 //auth
 router.post("/auth/admin", authService.authorizeAdmin);
-router.post("/auth/users", authService.authorizeAdmin);
 // router.post("/auth/user", authService.);
 
 //upload

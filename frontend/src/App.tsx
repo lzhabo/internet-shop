@@ -10,6 +10,7 @@ import ProductPage from "@components/ProductPage";
 import Header from "@components/Header/Header";
 import LoginPage from "@components/Auth/LoginPage";
 import RegistrationPage from "@components/Auth/RegistrationPage";
+import SearchPage from "@components/SearchPage";
 
 interface IProps {}
 
@@ -38,6 +39,9 @@ const App: React.FunctionComponent<IProps> = () => {
         </Route>
         <Route path={ROUTES.LOGIN} exact>
           <LoginPage />
+        </Route>
+        <Route path={ROUTES.SEARCH} exact>
+          <SearchPage />
         </Route>
       </Switch>
       <Footer />

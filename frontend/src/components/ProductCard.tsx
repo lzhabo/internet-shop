@@ -1,9 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { IProduct } from "shop-common/models";
-import { ROUTES } from "@stores/RouterStore";
 import { useHistory } from "react-router-dom";
-import NewProductForm from "../../../admin-shop/src/components/NewProductForm";
 
 interface IProps {
   product: IProduct;

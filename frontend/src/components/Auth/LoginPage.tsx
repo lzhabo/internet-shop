@@ -31,8 +31,8 @@ const LoginPage: React.FC<IProps> = () => {
   const history = useHistory();
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (v: IFormValues) =>
-    accountStore.signInWithEmailAndPassword(v.login, v.password, v.remember);
+  const onSubmit = (v: IFormValues) => {};
+  // accountStore.signInWithEmailAndPassword(v.login, v.password, v.remember);
 
   return (
     <Root>

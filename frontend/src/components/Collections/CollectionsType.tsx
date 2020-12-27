@@ -18,7 +18,6 @@ const Root = styled.div`
 const ProductsWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  //justify-content: center;
   justify-content: space-around;
 `;
 
@@ -27,7 +26,6 @@ const PageHeader = styled.div`
   font-weight: 500;
   font-style: normal;
   color: #1c1b1b;
-  transition: color 0.2s ease-in-out;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 `;
