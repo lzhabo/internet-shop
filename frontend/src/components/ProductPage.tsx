@@ -2,12 +2,14 @@ import styled from "@emotion/styled";
 import React from "react";
 import { useObserver } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
-import { useStores } from "@stores";
+import { BasketStore, useStores } from "@stores";
 import { Column } from "./flex";
 import Title from "@components/Title";
 import Loading from "@components/Loading";
 import Page404 from "@components/Page404";
 import { useForm } from "react-hook-form";
+import { IBasketItem } from "@src/stores/BasketStore";
+import { useLocalStore } from "mobx-react-lite";
 
 interface IProps {}
 
@@ -20,19 +22,15 @@ interface ParamIds {
   id: string;
 }
 
-interface BasketValues {
-  id: string;
-  amount: number;
-  material: string;
-}
-
 const Img = styled.img`
   width: 300px;
   height: 300px;
 `;
+
+const ctx = React.createContext<IBasketItem | null>(null);
 const ProductPage: React.FC<IProps> = () => {
   const { id } = useParams<ParamIds>();
-  const { productStore } = useStores();
+  const { productStore, basketStore } = useStores();
 
   const initialized = useObserver(() => productStore.initialized);
   const products = useObserver(function () {
@@ -40,9 +38,11 @@ const ProductPage: React.FC<IProps> = () => {
   });
   const product = products.find((p) => p._id === id);
 
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (v: BasketValues) => {
-    console.log(v);
+  const { register, handleSubmit } = useForm();
+
+  // const store = useLocalStore(() => new BasketStore(basketStore, todoItem));
+  const onSubmit = (v: IBasketItem) => {
+    basketStore.add(v);
   };
   if (!initialized)
     return (
@@ -64,12 +64,6 @@ const ProductPage: React.FC<IProps> = () => {
           </Title>
           <Title>$ {product.price}</Title>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <select name="material" ref={register}>
-              <option value="">Choose...</option>
-              {product.material.map((m, index) => (
-                <option value={m}>{m.toUpperCase()}</option>
-              ))}
-            </select>
             <input
               name="amount"
               type="number"

@@ -25,7 +25,6 @@ const Root = styled.div`
     right: 50%;
   }
 `;
-
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,12 +34,6 @@ const ContentWrapper = styled.div`
   & > * {
     border-bottom: 0.5px solid #ffff;
   }
-`;
-
-const CloseBtn = styled.img`
-  position: absolute;
-  left: 0;
-  top: 0;
 `;
 const MenuTitle = styled.div`
   font-family: Montserrat;
