@@ -48,8 +48,7 @@ const CollectionsType: React.FC<IProps> = () => {
     "anklets",
     "necklaces",
     "bracelets",
-    "earrings",
-    "all"
+    "earrings"
   );
   if (!initialized)
     return (

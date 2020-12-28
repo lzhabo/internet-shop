@@ -17,11 +17,22 @@ function randomInteger(min: number, max: number) {
   return Math.floor(rand);
 }
 
+function randomType(): string {
+  const myArray = ["rings", "anklets", "necklaces", "bracelets", "earrings"];
+  return myArray[Math.floor(Math.random() * myArray.length)];
+}
+
+function randomMaterial(): string {
+  const myArray = ["silver", "gold"];
+  return myArray[Math.floor(Math.random() * myArray.length)];
+}
+
 //fill db
+
 describe("fill db", () => {
   it("fill products", async () => {
     await Promise.all(
-      Array.from({ length: 3 }, async () =>
+      Array.from({ length: 50 }, async () =>
         axios.post("http://localhost:5000/api/v1/products", {
           name: "Product",
           photos: await Promise.all(
@@ -30,26 +41,34 @@ describe("fill db", () => {
           price: randomInteger(5, 30),
           description: await getRandomDescription(),
           disabled: true,
-          material: ["silver", "gold"],
-          type: "earrings",
-          size: 5.5,
+          material: randomMaterial(),
+          type: randomType(),
           oldPrice: randomInteger(5, 30),
-          isOnSale: false,
+          isOnSale: Math.random() < 0.5,
           amount: 100,
         })
       )
     );
   }, 10000000);
 });
-
 describe("delete data", () => {
   it("delete products", async () => {
-    const { data: posts } = await axios.get("http://localhost:5000/api/v1/products");
+    const { data: products } = await axios.get("http://localhost:5000/api/v1/products");
     await Promise.all(
-      posts.map(({ _id }: TProductDocument) =>
+      products.map(({ _id }: TProductDocument) =>
         axios.delete(`http://localhost:5000/api/v1/products/${_id}`)
       )
     );
+  });
+
+  it("update products", async () => {
+    const { data: products } = await axios.get("http://localhost:5000/api/v1/products");
+    // await Promise.all(
+    //   products.map((product: TProductDocument) =>
+    //     axios.delete(`http://localhost:5000/api/v1/products/${_id}`)
+    //     productsService.updateProduct(product.id, ... product);
+    //   )
+    // );
   });
 });
 describe("auth things", () => {

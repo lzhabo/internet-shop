@@ -7,8 +7,7 @@ export interface Product {
   photos?: string[];
   description?: string;
   disabled?: boolean;
-  size: number;
-  material: string[];
+  material: string;
   type: string;
   amount: number;
   isOnSale?: boolean;
@@ -22,11 +21,10 @@ const ProductSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   oldPrice: { type: Number, required: false },
   photos: { type: [String], required: false, default: [] },
-  material: { type: [String], required: true, default: [] },
+  material: { type: String, required: true },
   description: { type: String, required: false },
   disabled: { type: Boolean, required: false },
   isOnSale: { type: Boolean, required: false },
-  size: { type: Number, required: true },
   type: { type: String, required: true },
 });
 

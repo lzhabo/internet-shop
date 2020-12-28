@@ -6,9 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { Router } from "react-router-dom";
 import { RootStore, storesContext } from "@stores";
 import "normalize.css";
-
 const mobxStore = new RootStore();
-
 ReactDOM.render(
   <React.StrictMode>
     <storesContext.Provider value={mobxStore}>

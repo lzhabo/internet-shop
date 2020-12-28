@@ -13,8 +13,7 @@ export interface IProduct {
   photos?: string[];
   description?: string;
   disabled?: boolean;
-  size: number;
-  material: string[];
+  material: string;
   type: string;
   amount: number;
   isOnSale?: boolean;
@@ -30,20 +29,27 @@ export interface IAdmin {
 export interface ICustomer {
   name: string;
   surname: string;
-  address: IAddress;
   phone: string;
   email?: string;
 }
 
 export interface IOrder {
   number: string;
-  products: IProduct[];
-  customer: ICustomer;
-  shipping?: string;
+  // customer: ICustomer; ---todo
+  createDate: Date;
+  status: string;
+  orderAmount: string;
+  items: IProduct[];
+  shippingAddress: IAnonymousInfo;
 }
 
-export interface IAddress {
+export interface IAnonymousInfo {
+  firstName?: string;
+  lastName: string;
   country: string;
   city: string;
   street: string;
+  apartment: string;
+  postalCode: string;
+  phone: string;
 }

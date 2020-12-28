@@ -4,10 +4,11 @@ import Title from "@components/Title";
 import CloseIconBlack from "@components/icons/CloseIconBlack";
 import { useObserver } from "mobx-react-lite";
 import { useStores } from "@stores";
-import { FlexContainer } from "../../../../admin-shop/src/components/FlexContaner";
 import { Row } from "@components/flex";
 import Subtitle from "@components/Subtitle";
-import ProductCardForBasket from "@src/screens/Basket/ProductCardForBasket";
+import BasketItem from "@src/screens/Basket/BasketItem";
+import { ifError } from "assert";
+import Btn from "@components/Btn";
 
 interface IProps {
   onClose: () => void;
@@ -16,7 +17,6 @@ interface IProps {
 const Root = styled.div`
   display: flex;
   flex-direction: column;
-  //justify-content: center;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -29,37 +29,9 @@ const Root = styled.div`
   }
   background: #ffff;
 `;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 1440px) {
-    width: 640px;
-  }
-  & > * {
-    border-bottom: 0.5px solid #ffff;
-  }
+const ScrollContainer = styled.div`
+  overflow-y: auto;
 `;
-
-const CloseBtn = styled.img`
-  position: absolute;
-  right: 0;
-  top: 0;
-`;
-const MenuTitle = styled.div`
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  text-transform: uppercase;
-  padding: 12px 0 12px;
-
-  line-height: 30px;
-
-  letter-spacing: 2px;
-  color: #ffff;
-`;
-
 const Basket: React.FC<IProps> = ({ onClose }) => {
   const { basketStore } = useStores();
   const basketItems = useObserver(function () {
@@ -80,7 +52,16 @@ const Basket: React.FC<IProps> = ({ onClose }) => {
         {basketItems.length === 0 ? (
           <Subtitle>Your cart is empty</Subtitle>
         ) : (
-          <ProductCardForBasket id={""} quantity={1} />
+          <div>
+            <ScrollContainer>
+              {basketItems.map((item, index) => (
+                <BasketItem id={item.id} quantity={item.amount} />
+              ))}
+            </ScrollContainer>
+            <Btn backgroundColor="#52b48a" color="#ffff">
+              Check 0ut {basketStore.totalCost}
+            </Btn>
+          </div>
         )}
       </Row>
     </Root>

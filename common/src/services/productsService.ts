@@ -21,6 +21,7 @@ export default {
     description?: string;
     disabled: boolean;
     type: string;
+    amount: number;
   }): Promise<IProduct> =>
     apiService.makeApiRequest(`api/v1/products/`, { method: "POST", data }),
 
