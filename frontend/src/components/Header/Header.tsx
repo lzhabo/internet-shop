@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import BagIcon from "@components/icons/BagIcon";
 import MenuIcon from "@components/icons/MenuIcon";
 import SearchIcon from "@components/icons/SearchIcon";
-import Basket from "@src/screens/Basket/Basket";
+import SideBasket from "@src/screens/Basket/SideBasket";
 
 interface IProps {}
 
@@ -16,6 +16,10 @@ const Root = styled.div`
   align-items: center;
   padding: 25px;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #ffff;
 `;
 const Logo = styled.div`
   font-family: Montserrat;
@@ -40,7 +44,7 @@ const Header: React.FC<IProps> = () => {
         <BagIcon onClick={() => setOpenedBasket(true)} />
       </div>
       {openedMenu && <SmallNavbar onClose={() => setOpenedMenu(false)} />}
-      {openedBasket && <Basket onClose={() => setOpenedBasket(false)} />}
+      {openedBasket && <SideBasket onClose={() => setOpenedBasket(false)} />}
     </Root>
   );
 };

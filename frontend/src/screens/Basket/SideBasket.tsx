@@ -33,7 +33,7 @@ const Root = styled.div`
 const ScrollContainer = styled.div`
   overflow-y: auto;
 `;
-const Basket: React.FC<IProps> = ({ onClose }) => {
+const SideBasket: React.FC<IProps> = ({ onClose }) => {
   const { basketStore } = useStores();
   const history = useHistory();
   return useObserver(() => (
@@ -69,4 +69,4 @@ const Basket: React.FC<IProps> = ({ onClose }) => {
     </Root>
   ));
 };
-export default Basket;
+export default SideBasket;

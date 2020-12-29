@@ -30,7 +30,10 @@ const PageHeader = styled.div`
 
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin: 50px 0 70px;
+  margin: 30px 0 50px;
+  @media (min-width: 660px) {
+    margin: 50px 0 70px;
+  }
 `;
 
 interface ParamTypes {
