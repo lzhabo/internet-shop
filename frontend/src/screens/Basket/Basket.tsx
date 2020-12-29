@@ -7,8 +7,9 @@ import { useStores } from "@stores";
 import { Row } from "@components/flex";
 import Subtitle from "@components/Subtitle";
 import BasketItem from "@src/screens/Basket/BasketItem";
-import { ifError } from "assert";
 import Btn from "@components/Btn";
+import { ROUTES } from "@stores/RouterStore";
+import { useHistory } from "react-router-dom";
 
 interface IProps {
   onClose: () => void;
@@ -34,11 +35,8 @@ const ScrollContainer = styled.div`
 `;
 const Basket: React.FC<IProps> = ({ onClose }) => {
   const { basketStore } = useStores();
-  const basketItems = useObserver(function () {
-    return basketStore.basketItems;
-  });
-
-  return (
+  const history = useHistory();
+  return useObserver(() => (
     <Root>
       <Row
         justifyContent="space-between"
@@ -49,22 +47,26 @@ const Basket: React.FC<IProps> = ({ onClose }) => {
         <CloseIconBlack onClick={onClose} />
       </Row>
       <Row>
-        {basketItems.length === 0 ? (
+        {basketStore.basketItems.length === 0 ? (
           <Subtitle>Your cart is empty</Subtitle>
         ) : (
           <div>
             <ScrollContainer>
-              {basketItems.map((item, index) => (
-                <BasketItem id={item.id} quantity={item.amount} />
+              {basketStore.basketItems.map((item, index) => (
+                <BasketItem id={item.id} quantity={item.amount} key={index} />
               ))}
             </ScrollContainer>
-            <Btn backgroundColor="#52b48a" color="#ffff">
-              Check 0ut {basketStore.totalCost}
+            <Btn
+              backgroundColor="#52b48a"
+              color="#ffff"
+              onClick={() => history.push(ROUTES.CHECKOUT)}
+            >
+              Check 0ut
             </Btn>
           </div>
         )}
       </Row>
     </Root>
-  );
+  ));
 };
 export default Basket;

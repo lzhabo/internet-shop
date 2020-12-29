@@ -14,7 +14,8 @@ const Root = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 25px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
 `;
 const Logo = styled.div`
   font-family: Montserrat;
@@ -23,7 +24,6 @@ const Logo = styled.div`
   font-size: 40px;
   line-height: 20px;
   letter-spacing: 0.1em;
-  position: absolute;
 `;
 const Header: React.FC<IProps> = () => {
   const history = useHistory();
@@ -34,9 +34,7 @@ const Header: React.FC<IProps> = () => {
       <div>
         <MenuIcon onClick={() => setOpenedMenu(true)} />
       </div>
-      <div style={{ position: "relative" }}>
-        <Logo>LOGO</Logo>
-      </div>
+      <Logo>LOGO</Logo>
       <div>
         <SearchIcon onClick={() => history.push(ROUTES.SEARCH)} />
         <BagIcon onClick={() => setOpenedBasket(true)} />

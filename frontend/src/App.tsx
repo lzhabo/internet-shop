@@ -10,14 +10,16 @@ import ProductPage from "@components/ProductPage";
 import Header from "@components/Header/Header";
 import LoginPage from "@components/Auth/LoginPage";
 import RegistrationPage from "@components/Auth/RegistrationPage";
-import SearchPage from "@components/SearchPage";
-
+import Checkout from "@src/screens/Chekout";
+import BasketPage from "@src/screens/Basket/BasketPage";
+import "antd/dist/antd.css";
 interface IProps {}
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  justify-content: center;
 `;
 const App: React.FunctionComponent<IProps> = () => {
   return (
@@ -40,8 +42,11 @@ const App: React.FunctionComponent<IProps> = () => {
         <Route path={ROUTES.LOGIN} exact>
           <LoginPage />
         </Route>
-        <Route path={ROUTES.SEARCH} exact>
-          <SearchPage />
+        <Route path={ROUTES.BASKET} exact>
+          <BasketPage />
+        </Route>
+        <Route path={ROUTES.CHECKOUT} exact>
+          <Checkout />
         </Route>
       </Switch>
       <Footer />

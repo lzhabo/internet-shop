@@ -1,11 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import LoginScreen from "@src/screens/LoginScreen";
-import Loading from "@components/Loading";
 import { ROUTES } from "@stores/RouterStore";
 import { Route, Switch } from "react-router-dom";
-import { useStores } from "@stores";
-import { useObserver } from "mobx-react-lite";
 import PrivateRoute from "@components/PrivateRoute";
 import MainScreen from "@src/screens/MainScreen";
 

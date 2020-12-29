@@ -23,11 +23,14 @@ const ProductsWrap = styled.div`
 
 const PageHeader = styled.div`
   font-family: Montserrat, sans-serif;
-  font-weight: 500;
   font-style: normal;
-  color: #1c1b1b;
-  letter-spacing: 0.2em;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+
+  letter-spacing: 2px;
   text-transform: uppercase;
+  margin: 50px 0 70px;
 `;
 
 interface ParamTypes {

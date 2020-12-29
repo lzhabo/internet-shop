@@ -15,7 +15,6 @@ export interface IProduct {
   disabled?: boolean;
   material: string;
   type: string;
-  amount: number;
   isOnSale?: boolean;
 }
 
@@ -40,10 +39,6 @@ export interface IOrder {
   status: string;
   orderAmount: string;
   items: IProduct[];
-  shippingAddress: IAnonymousInfo;
-}
-
-export interface IAnonymousInfo {
   firstName?: string;
   lastName: string;
   country: string;

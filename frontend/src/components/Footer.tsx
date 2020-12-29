@@ -1,82 +1,65 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { Column } from "@components/flex";
+import { FlexContainer } from "@components/FlexContaner";
 
 interface IProps {}
 
 const Root = styled.div`
   display: flex;
-  flex-direction: column;
   background-color: #7f9aa3;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 34px 24px;
+  @media (min-width: 660px) {
+    flex-direction: row;
+  }
+  @media (min-width: 1440px) {
+    padding: 75px 80px;
+  }
 `;
-const Title = styled.div`
+const Heading = styled.div`
   font-family: Montserrat;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 30px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: #a9afb7;
-  padding: 5px 0 5px;
+  color: #ffff;
+  padding-bottom: 10px;
 `;
-const SubTitle = styled.div`
+const Subtitle = styled.div`
   font-family: Nunito Sans;
   font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 12px;
   line-height: 20px;
-  color: #ffffff;
+  letter-spacing: 2px;
+  color: #ffff;
+  padding: 5px 0;
 `;
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  & > * {
-    margin: 0 40px;
-  }
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 50px 0 50px;
-  @media (min-width: 1440px) {
-    flex-direction: row;
-    & > * {
-      margin: 20px 0 20px;
-    }
-  } ;
-`;
-const Rights = styled.div`
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-  color: #a9afb7;
-`;
-
 const Footer: React.FC<IProps> = () => {
   return (
     <Root>
-      <Container>
-        <Column>
-          <Title>About Us</Title>
-          <SubTitle>
-            We donate a portion of every purchase to organizations that are
-            cleaning our oceans and rescuing marine wildlife.
-          </SubTitle>
-          <SubTitle>Need to get in touch ?</SubTitle>
-          <SubTitle>Доставка и самовывоз</SubTitle>
-        </Column>
-        <Column>
-          <Title>О компании</Title>
-          <SubTitle>Новости</SubTitle>
-          <SubTitle>Отзывы о компании</SubTitle>
-          <SubTitle>Политика конфиденциальности</SubTitle>
-        </Column>
-        <Column>
-          <Title>Help</Title>
-          <SubTitle>Contact Us</SubTitle>
-          <SubTitle>Privacy Policy</SubTitle>
-          <SubTitle>shop@mpamed.ru</SubTitle>
-        </Column>
-      </Container>
+      <FlexContainer flexDirection="column" style={{ maxWidth: 350 }}>
+        <Heading>About us</Heading>
+        <Subtitle>
+          We are Atolea. We make Ocean-inspired Jewelry that helps contribute to
+          saving our Oceans. We donate a portion of every purchase to
+          organizations that are cleaning our oceans and rescuing marine
+          wildlife.
+        </Subtitle>
+        <Subtitle>
+          <b>We are available 24/7 at info@atoleajewelry.com</b>
+        </Subtitle>
+      </FlexContainer>
+      <div>
+        <Heading>Help</Heading>
+        <Subtitle>Our story</Subtitle>
+        <Subtitle>Contact Us</Subtitle>
+        <Subtitle>Private Policy</Subtitle>
+        <Subtitle>Refund Policy</Subtitle>
+      </div>
     </Root>
   );
 };
