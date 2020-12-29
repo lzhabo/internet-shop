@@ -12,27 +12,27 @@ interface IProps {
 const Root = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background: #41545a;
   position: fixed;
   top: 0;
   bottom: 0;
   right: 25%;
   left: 0;
-  padding: 0 16px;
+  padding: 30px 30px;
   z-index: 3;
   @media (min-width: 660px) {
-    right: 50%;
+    right: 60%;
   }
 `;
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 15px;
   @media (min-width: 1440px) {
     width: 640px;
   }
   & > * {
-    border-bottom: 0.5px solid #ffff;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
   }
 `;
 const MenuTitle = styled.div`
@@ -42,9 +42,7 @@ const MenuTitle = styled.div`
   font-size: 12px;
   text-transform: uppercase;
   padding: 12px 0 12px;
-
   line-height: 30px;
-
   letter-spacing: 2px;
   color: #ffff;
 `;
@@ -66,7 +64,10 @@ const SmallNavbar: React.FC<IProps> = ({ onClose }) => {
 
   return (
     <Root>
-      <CloseIconWhite onClick={onClose} />
+      <CloseIconWhite
+        onClick={onClose}
+        style={{ paddingBottom: 5, margin: -6 }}
+      />
       <ContentWrapper>
         {navData.map((data, index) => (
           <Row onClick={() => handleClose(data.route)}>

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import * as productController from "./controllers/productController";
+import * as orderController from "./controllers/orderController";
 import authService from "./services/authService";
 import uploadService from "./services/uploadService";
 
@@ -28,3 +29,9 @@ router.post("/auth/admin", authService.authorizeAdmin);
 router.route("/upload").post(authService.withAdminAuthMW, uploadService.upload);
 
 export { router };
+// Order routes
+router.route("/orders/").get(authService.withAdminAuthMW, orderController.getAllOrders);
+router.route("/orders/:id").get(authService.withAuthMW, orderController.getOrderById);
+router.route("/orders/").post(authService.withAuthMW, orderController.createOrder);
+router.route("/orders/:id").put(authService.withAuthMW, orderController.updateOrder);
+router.route("/orders/:id").delete(authService.withAdminAuthMW, orderController.deleteOrder);

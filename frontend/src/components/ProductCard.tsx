@@ -12,7 +12,7 @@ const Root = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  //margin: 0px;
   position: relative;
 `;
 
@@ -41,10 +41,10 @@ const OnSale = styled.div`
   color: #ffff;
   left: 0;
   top: 0;
-  font-family: Montserrat, sans-serif;
-  font-weight: 300;
+  font-family: Montserrat;
+  font-weight: 400;
   font-style: normal;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   position: absolute;
   padding: 5px;

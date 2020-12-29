@@ -6,8 +6,8 @@ interface IProps {}
 
 const Root = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 const slidesData = [
   {
@@ -41,12 +41,31 @@ const slidesData = [
       "https://cdn.shopify.com/s/files/1/0459/0744/3880/products/wave-ring_700x.jpg?v=1599235646",
   },
 ];
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+const Title = styled.div`
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 50px 0 20px;
+`;
 const CollectionsList: React.FC<IProps> = () => {
   return (
     <Root>
-      {slidesData.map((slide, index) => (
-        <CollectionItem {...slide} />
-      ))}
+      <Title>All collections</Title>
+      <Container>
+        {slidesData.map((slide, index) => (
+          <CollectionItem {...slide} />
+        ))}
+      </Container>
     </Root>
   );
 };

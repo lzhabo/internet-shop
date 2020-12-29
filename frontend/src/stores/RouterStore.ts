@@ -10,6 +10,8 @@ export enum ROUTES {
   LOGIN = "/account/login",
   SEARCH = "/search/:params",
   REGISTER = "/account/register",
+  BASKET = "/basket",
+  CHECKOUT = "/checkout",
 }
 
 export default class RouterStore {

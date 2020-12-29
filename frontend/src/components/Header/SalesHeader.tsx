@@ -27,8 +27,20 @@ const SalesHeader: React.FC<IProps> = () => {
   return (
     <Root>
       <Text>
-        🎁 XMAS OFFER : PICK 3 JEWELS, PAY ONLY 2, with code : gift 🎁 🌎 FREE
-        SHIPPING 🌎
+        <span role="img" aria-label="present">
+          🎁
+        </span>{" "}
+        XMAS OFFER : PICK 3 JEWELS, PAY ONLY 2, with code : gift{" "}
+        <span role="img" aria-label="present">
+          🎁{" "}
+        </span>
+        <span role="img" aria-label="world">
+          🌎
+        </span>{" "}
+        FREE SHIPPING
+        <span role="img" aria-label="world">
+          🌎
+        </span>
       </Text>
     </Root>
   );

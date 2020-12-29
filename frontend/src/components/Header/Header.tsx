@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import BagIcon from "@components/icons/BagIcon";
 import MenuIcon from "@components/icons/MenuIcon";
 import SearchIcon from "@components/icons/SearchIcon";
-import Basket from "@src/screens/Basket/Basket";
+import SideBasket from "@src/screens/Basket/SideBasket";
 
 interface IProps {}
 
@@ -14,7 +14,12 @@ const Root = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 25px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #ffff;
 `;
 const Logo = styled.div`
   font-family: Montserrat;
@@ -23,7 +28,6 @@ const Logo = styled.div`
   font-size: 40px;
   line-height: 20px;
   letter-spacing: 0.1em;
-  position: absolute;
 `;
 const Header: React.FC<IProps> = () => {
   const history = useHistory();
@@ -34,15 +38,13 @@ const Header: React.FC<IProps> = () => {
       <div>
         <MenuIcon onClick={() => setOpenedMenu(true)} />
       </div>
-      <div style={{ position: "relative" }}>
-        <Logo>LOGO</Logo>
-      </div>
+      <Logo>LOGO</Logo>
       <div>
         <SearchIcon onClick={() => history.push(ROUTES.SEARCH)} />
         <BagIcon onClick={() => setOpenedBasket(true)} />
       </div>
       {openedMenu && <SmallNavbar onClose={() => setOpenedMenu(false)} />}
-      {openedBasket && <Basket onClose={() => setOpenedBasket(false)} />}
+      {openedBasket && <SideBasket onClose={() => setOpenedBasket(false)} />}
     </Root>
   );
 };

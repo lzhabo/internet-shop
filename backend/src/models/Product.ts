@@ -9,7 +9,6 @@ export interface Product {
   disabled?: boolean;
   material: string;
   type: string;
-  amount: number;
   isOnSale?: boolean;
 }
 
@@ -18,7 +17,6 @@ export type TProductDocument = Document & Product;
 const ProductSchema = new mongoose.Schema({
   name: { type: String, required: true },
   price: { type: Number, required: true },
-  amount: { type: Number, required: true },
   oldPrice: { type: Number, required: false },
   photos: { type: [String], required: false, default: [] },
   material: { type: String, required: true },

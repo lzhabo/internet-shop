@@ -2,14 +2,13 @@ import styled from "@emotion/styled";
 import React from "react";
 import { useObserver } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
-import { BasketStore, useStores } from "@stores";
+import { useStores } from "@stores";
 import { Column } from "./flex";
 import Title from "@components/Title";
 import Loading from "@components/Loading";
 import Page404 from "@components/Page404";
 import { useForm } from "react-hook-form";
 import { IBasketItem } from "@src/stores/BasketStore";
-import { useLocalStore } from "mobx-react-lite";
 
 interface IProps {}
 
@@ -27,7 +26,6 @@ const Img = styled.img`
   height: 300px;
 `;
 
-const ctx = React.createContext<IBasketItem | null>(null);
 const ProductPage: React.FC<IProps> = () => {
   const { id } = useParams<ParamIds>();
   const { productStore, basketStore } = useStores();
@@ -40,7 +38,6 @@ const ProductPage: React.FC<IProps> = () => {
 
   const { register, handleSubmit } = useForm();
 
-  // const store = useLocalStore(() => new BasketStore(basketStore, todoItem));
   const onSubmit = (v: IBasketItem) => {
     basketStore.add(v);
   };
@@ -68,6 +65,7 @@ const ProductPage: React.FC<IProps> = () => {
               name="amount"
               type="number"
               ref={register({ pattern: /\d+/ })}
+              min={1}
             />
             <input
               type="hidden"
