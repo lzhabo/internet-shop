@@ -9,6 +9,9 @@ import Loading from "@components/Loading";
 import Page404 from "@components/Page404";
 import { useForm } from "react-hook-form";
 import { IBasketItem } from "@src/stores/BasketStore";
+import Carousel from "nuka-carousel";
+import ArrowLeftIcon from "@components/icons/ArrowLeftIcon";
+import ArrowRightIcon from "@components/icons/ArrowRightIcon";
 
 interface IProps {}
 
@@ -51,9 +54,15 @@ const ProductPage: React.FC<IProps> = () => {
     return (
       <Root>
         {product.photos !== undefined ? (
-          <Img src={product.photos[0] !== undefined ? product.photos[0] : ""} />
+          <div>
+            <Carousel>
+              {product.photos.map((pic, index) => (
+                <img src={pic} key={index} />
+              ))}
+            </Carousel>
+          </div>
         ) : (
-          <div></div>
+          <div />
         )}
         <Column>
           <Title>

@@ -10,30 +10,22 @@ const CloseIconBlack = (props: React.SVGProps<SVGSVGElement>) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <svg
+    <rect
+      x="6.56494"
+      y="5"
       width="40"
-      height="40"
-      viewBox="0 0 40 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="6.56494"
-        y="5"
-        width="40"
-        height="1"
-        transform="rotate(45 6.56494 5)"
-        fill="black"
-      />
-      <rect
-        x="5.15088"
-        y="33"
-        width="40"
-        height="1"
-        transform="rotate(-45 5.15088 33)"
-        fill="black"
-      />
-    </svg>
+      height="1"
+      transform="rotate(45 6.56494 5)"
+      fill="black"
+    />
+    <rect
+      x="5.15088"
+      y="33"
+      width="40"
+      height="1"
+      transform="rotate(-45 5.15088 33)"
+      fill="black"
+    />
   </svg>
 );
 
