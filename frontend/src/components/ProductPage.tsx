@@ -12,6 +12,7 @@ import MinusIcon from "@components/icons/MinusIcon";
 import PlusIcon from "@components/icons/PlusIcon";
 import { FlexContainer } from "@components/FlexContaner";
 import Subtitle from "@components/Subtitle";
+import NumberInput from "@components/NumberInput";
 
 interface IProps {}
 
@@ -65,10 +66,10 @@ const ProductPage: React.FC<IProps> = () => {
   const onClick = () => {
     basketStore.add({ ...basketStore.emptyBasketItem, id, amount });
   };
-  const onChange = (e: any) => {
-    setAmount(e.target.value);
-    console.log(amount);
-  };
+  // const onChange = (e: any) => {
+  //   setAmount(e.target.value);
+  //   console.log(amount);  //todo  delete?
+  // };
   if (!initialized)
     return (
       <Root>
@@ -99,18 +100,19 @@ const ProductPage: React.FC<IProps> = () => {
           <Title style={{ padding: "15px 0" }}>{product.name}</Title>
           <Price>$ {product.price}</Price>
           <Subtitle>{product.material}</Subtitle>
-          <Input>
-            <MinusIcon onClick={() => setAmount(amount - 1)} />
-            <input
-              readOnly
-              value={amount}
-              style={{
-                borderWidth: 0,
-                border: "none",
-              }}
-            />
-            <PlusIcon onClick={() => setAmount(amount + 1)} />
-          </Input>
+          {/*<Input>*/}
+          {/*  <MinusIcon onClick={() => setAmount(amount - 1)} />*/}
+          {/*  <input*/}
+          {/*    readOnly*/}
+          {/*    value={amount}*/}
+          {/*    style={{*/}
+          {/*      borderWidth: 0,*/}
+          {/*      border: "none",*/}
+          {/*    }}*/}
+          {/*  />*/}
+          {/*  <PlusIcon onClick={() => setAmount(amount + 1)} />*/}
+          {/*</Input>*/}
+          <NumberInput value={amount} />
           <Btn backgroundColor="#52b48a" color="#ffff" onClick={onClick}>
             Add to cart
           </Btn>

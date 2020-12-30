@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import uploadService from "shop-common/services/uploadService";
-import { notification, Space, Image } from "antd";
+import { notification } from "antd";
 import Loading from "@components/Loading";
 
 interface IProps {

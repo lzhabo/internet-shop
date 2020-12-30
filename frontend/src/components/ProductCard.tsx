@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useState } from "react";
 import { IProduct } from "shop-common/models";
 import { useHistory } from "react-router-dom";
 
@@ -12,8 +12,8 @@ const Root = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  //margin: 0px;
   position: relative;
+  margin: 10px;
 `;
 
 const Title = styled.div`
@@ -53,6 +53,10 @@ const OnSale = styled.div`
 
 const noPic = "https://i.imgur.com/sjDBHUW.jpg";
 const ProductCard: React.FC<IProps> = ({ product }) => {
+  const [pic, setPic] = useState<string>(
+    product.photos !== undefined ? product.photos[0] : ""
+  );
+
   const history = useHistory();
   return (
     <Root>
@@ -65,7 +69,19 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
       )}
       {product.photos !== undefined ? (
         <Img
-          src={product.photos[0] !== undefined ? product.photos[0] : ""}
+          src={pic}
+          alt={product.name}
+          onMouseEnter={() => {
+            if (
+              product.photos !== undefined &&
+              product.photos[1] !== undefined
+            ) {
+              setPic(product.photos !== undefined ? product.photos[1] : "");
+            }
+          }}
+          onMouseOut={() => {
+            setPic(product.photos !== undefined ? product.photos[0] : "pic");
+          }}
           onClick={() => history.push(`products/${product._id}`)}
         />
       ) : (
