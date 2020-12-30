@@ -13,6 +13,8 @@ import RegistrationPage from "@components/Auth/RegistrationPage";
 import Checkout from "@src/screens/Chekout";
 import BasketPage from "@src/screens/Basket/BasketPage";
 import "antd/dist/antd.css";
+import RootScreen from "@src/screens/RootScreen";
+
 interface IProps {}
 
 const Root = styled.div`
@@ -27,6 +29,9 @@ const App: React.FunctionComponent<IProps> = () => {
       <SalesHeader />
       <Header />
       <Switch>
+        <Route path={ROUTES.ROOT} exact>
+          <RootScreen />
+        </Route>
         <Route path={ROUTES.COLLECTIONS_TYPE} exact>
           <CollectionsType />
         </Route>

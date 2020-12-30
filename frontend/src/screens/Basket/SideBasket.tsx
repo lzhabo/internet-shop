@@ -10,6 +10,7 @@ import BasketItem from "@src/screens/Basket/BasketItem";
 import Btn from "@components/Btn";
 import { ROUTES } from "@stores/RouterStore";
 import { useHistory } from "react-router-dom";
+import { FlexContainer } from "@components/FlexContaner";
 
 interface IProps {
   onClose: () => void;
@@ -22,8 +23,7 @@ const Root = styled.div`
   top: 0;
   bottom: 0;
   right: 0;
-  left: 25%;
-  padding: 0 16px;
+  left: 15%;
   z-index: 3;
   @media (min-width: 660px) {
     left: 50%;
@@ -32,25 +32,37 @@ const Root = styled.div`
 `;
 const ScrollContainer = styled.div`
   overflow-y: auto;
+  display: flex;
+`;
+const BasketHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
+  min-height: 65px;
+  padding: 16px 24px;
 `;
 const SideBasket: React.FC<IProps> = ({ onClose }) => {
   const { basketStore } = useStores();
   const history = useHistory();
   return useObserver(() => (
     <Root>
-      <Row
-        justifyContent="space-between"
-        style={{ padding: "10px 0" }}
-        alignItems="center"
-      >
+      <BasketHeader>
         <Title>Cart</Title>
         <CloseIconBlack onClick={onClose} />
-      </Row>
-      <Row>
+      </BasketHeader>
+      <FlexContainer
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+      >
         {basketStore.basketItems.length === 0 ? (
-          <Subtitle>Your cart is empty</Subtitle>
+          <Title>Your cart is empty</Title>
         ) : (
-          <div>
+          <FlexContainer
+            flexDirection="column"
+            style={{ alignContent: "space-between" }}
+          >
             <ScrollContainer>
               {basketStore.basketItems.map((item, index) => (
                 <BasketItem id={item.id} quantity={item.amount} key={index} />
@@ -63,9 +75,9 @@ const SideBasket: React.FC<IProps> = ({ onClose }) => {
             >
               Check 0ut
             </Btn>
-          </div>
+          </FlexContainer>
         )}
-      </Row>
+      </FlexContainer>
     </Root>
   ));
 };

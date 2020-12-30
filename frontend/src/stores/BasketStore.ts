@@ -28,14 +28,6 @@ export default class BasketStore {
     const index = this.basketItems.findIndex((i) => i.id === id);
     this.basketItems[index].amount = quantity;
   };
-  // @action increaseItem = (id: string) => {
-  //   const index = this.basketItems.findIndex((i) => i.id === id);
-  //   this.basketItems[index].amount = +1;
-  // };
-  // @action decreaseItem = (id: string) => {
-  //   const index = this.basketItems.findIndex((i) => i.id === id);
-  //   this.basketItems[index].amount = -1;
-  // };
 
   @computed get emptyBasketItem() {
     return {
@@ -49,13 +41,12 @@ export default class BasketStore {
   add = (v: IBasketItem) => {
     console.log(v);
     const index = this.basketItems.findIndex((item) => item.id === v.id);
-    console.log(index);
     if (index !== -1) {
       this.basketItems[index].amount = v.amount;
     } else {
       this.basketItems.push(v);
     }
-    console.log(this.basketItems);
+    console.log("basket items", this.basketItems);
   };
 
   @action deleteItem = (id: string) => {

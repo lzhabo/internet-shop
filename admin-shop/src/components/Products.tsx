@@ -19,6 +19,7 @@ const Root = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  flex-wrap: wrap;
 `;
 
 const Products: React.FC<IProps> = () => {
@@ -34,13 +35,7 @@ const Products: React.FC<IProps> = () => {
               <EditOutlined key="edit" />,
               <EllipsisOutlined key="ellipsis" />,
             ]}
-          >
-            <Skeleton avatar>
-              {/*avatar={<Avatar src={product.photos[0]} alt="product pic" />}*/}
-              title={product.name}
-              description="This is the description"
-            </Skeleton>
-          </Card>
+          ></Card>
         ))}
       </FlexContainer>
     </Root>

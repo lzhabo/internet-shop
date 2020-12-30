@@ -12,6 +12,7 @@
     "mobx-persist": "^0.4.1",
     "mobx-react-lite": "^2.2.0",
     "normalize.css": "^8.0.1",
+    "nuka-carousel": "^4.7.4",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.1",

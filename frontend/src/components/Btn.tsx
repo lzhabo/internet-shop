@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const Btn = styled.div<IProps>`
-  width: 200px;
+  width: 100%;
   height: 50px;
   background: ${({ backgroundColor }) => backgroundColor ?? "#ffffff"};
   color: ${({ color }) => color ?? "#000000"};

@@ -8,7 +8,6 @@ export enum ROUTES {
   COLLECTIONS_TYPE = "/collections/:type",
   PRODUCT_ID = "/collections/:type/:id",
   LOGIN = "/account/login",
-  SEARCH = "/search/:params",
   REGISTER = "/account/register",
   BASKET = "/basket",
   CHECKOUT = "/checkout",
