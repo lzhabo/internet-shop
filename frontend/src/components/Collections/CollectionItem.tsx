@@ -13,7 +13,6 @@ const Root = styled.div`
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  margin: 15px;
   @media (min-width: 1440px) {
     align-items: normal;
   }
@@ -30,10 +29,7 @@ const Title = styled.div`
 `;
 const Img = styled.img`
   max-width: 300px;
-  //width: 330px;
-  //width: 50%;
   @media (min-width: 1440px) {
-    //height: 500px;
   }
 `;
 const Div = styled.div`
