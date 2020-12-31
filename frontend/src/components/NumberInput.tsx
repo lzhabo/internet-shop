@@ -1,41 +1,58 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
-import MinusIcon from "@components/icons/MinusIcon";
-import PlusIcon from "@components/icons/PlusIcon";
+import React from "react";
 
 interface IProps {
   value: number;
+  setValue: (active: number) => void;
 }
 
 const Root = styled.div`
   display: flex;
-  border: 0.5px solid rgba(0, 0, 0, 0.2);
-  flex: 1;
-  padding: 5px 10px;
-  align-items: center;
-  margin: 25px 0;
+  font-size: 14px;
+`;
+const MinusBtn = styled.button`
+  width: 40px;
+  height: 40px;
+  box-shadow: none;
+  outline: none;
+  border-right: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  background: #ffff;
+`;
+const PlusBtn = styled.button`
+  width: 40px;
+  height: 40px;
+  boxshadow: none;
+  outline: none;
+  border-left: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  background: #ffff;
+`;
+const Input = styled.input`
+  width: 70px;
+  height: 40px;
+  border-left: none;
+  border-right: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  text-align: center;
 `;
 
-const NumberInput: React.FC<IProps> = ({ value }) => {
-  const [amount, setAmount] = useState(value);
-  useEffect(() => {
-    // Обновляем заголовок документа с помощью API браузера
-    console.log(`Вы нажали ${amount} раз`);
-  });
+const NumberInput: React.FC<IProps> = ({ value, setValue }) => {
+  const handleIncrement = () => setValue(value + 1);
+  const handleDecrement = () => value > 0 && setValue(value - 1);
+  const handleOnChange = (e: any) =>
+    !isNaN(+e.target.value) && setValue(+e.target.value);
   return (
     <Root>
-      <MinusIcon onClick={() => setAmount(amount - 1)} />
-      {/*<input*/}
-      {/*  readOnly*/}
-      {/*  disabled={true}*/}
-      {/*  value={amount}*/}
-      {/*  style={{*/}
-      {/*    borderWidth: 0,*/}
-      {/*    border: "none",*/}
-      {/*  }}*/}
-      {/*/>*/}
-      <div style={{ padding: "5px 35px" }}>{amount}</div>
-      <PlusIcon onClick={() => setAmount(amount + 1)} />
+      <MinusBtn onClick={handleDecrement}>-</MinusBtn>
+      <Input value={value} onChange={handleOnChange} />
+      <PlusBtn onClick={handleIncrement}>+</PlusBtn>
     </Root>
   );
 };

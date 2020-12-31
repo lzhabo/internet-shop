@@ -8,8 +8,6 @@ import Loading from "@components/Loading";
 import Page404 from "@components/Page404";
 import Carousel from "nuka-carousel";
 import Btn from "@components/Btn";
-import MinusIcon from "@components/icons/MinusIcon";
-import PlusIcon from "@components/icons/PlusIcon";
 import { FlexContainer } from "@components/FlexContaner";
 import Subtitle from "@components/Subtitle";
 import NumberInput from "@components/NumberInput";
@@ -32,14 +30,6 @@ interface ParamIds {
 
 const CarouselWrap = styled.div`
   max-width: 610px;
-`;
-const Input = styled.div`
-  display: flex;
-  border: 0.5px solid rgba(0, 0, 0, 0.2);
-  flex: 1;
-  padding: 5px 10px;
-  align-items: center;
-  margin: 25px 0;
 `;
 
 const Price = styled.div`
@@ -64,12 +54,9 @@ const ProductPage: React.FC<IProps> = () => {
   const product = products.find((p) => p._id === id);
 
   const onClick = () => {
-    basketStore.add({ ...basketStore.emptyBasketItem, id, amount });
+    if (amount > 0)
+      basketStore.add({ ...basketStore.emptyBasketItem, id, amount });
   };
-  // const onChange = (e: any) => {
-  //   setAmount(e.target.value);
-  //   console.log(amount);  //todo  delete?
-  // };
   if (!initialized)
     return (
       <Root>
@@ -100,19 +87,9 @@ const ProductPage: React.FC<IProps> = () => {
           <Title style={{ padding: "15px 0" }}>{product.name}</Title>
           <Price>$ {product.price}</Price>
           <Subtitle>{product.material}</Subtitle>
-          {/*<Input>*/}
-          {/*  <MinusIcon onClick={() => setAmount(amount - 1)} />*/}
-          {/*  <input*/}
-          {/*    readOnly*/}
-          {/*    value={amount}*/}
-          {/*    style={{*/}
-          {/*      borderWidth: 0,*/}
-          {/*      border: "none",*/}
-          {/*    }}*/}
-          {/*  />*/}
-          {/*  <PlusIcon onClick={() => setAmount(amount + 1)} />*/}
-          {/*</Input>*/}
-          <NumberInput value={amount} />
+          <div style={{ padding: "15px 0" }}>
+            <NumberInput value={amount} setValue={setAmount} />
+          </div>
           <Btn backgroundColor="#52b48a" color="#ffff" onClick={onClick}>
             Add to cart
           </Btn>
