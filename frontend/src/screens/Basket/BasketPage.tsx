@@ -29,9 +29,7 @@ const BasketPage: React.FC<IProps> = () => {
               <BasketItem id={item.id} quantity={item.amount} key={index} />
             ))}
           </ScrollContainer>
-          <Btn backgroundColor="#52b48a" color="#ffff" onClick={SubmitCheckout}>
-            Check 0ut
-          </Btn>
+          <Btn onClick={SubmitCheckout}>Check 0ut</Btn>
         </div>
       )}
     </Root>

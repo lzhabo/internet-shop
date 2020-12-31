@@ -29,12 +29,7 @@ const Page404: React.FC<IProps> = () => {
     <Root>
       <Title>404</Title>
       <Title>The page you are looking for cannot be found.</Title>
-      <Btn
-        onClick={() => history.push(ROUTES.ROOT)}
-        backgroundColor={"#52b48A"}
-      >
-        Go to homepage
-      </Btn>
+      <Btn onClick={() => history.push(ROUTES.ROOT)}>Go to homepage</Btn>
     </Root>
   );
 };

@@ -43,7 +43,12 @@ const CollectionItem: React.FC<IProps> = ({ pic, type }) => {
       <Img src={pic} />
       <Div>
         <Title>{type}</Title>
-        <Btn onClick={() => history.push(`${ROUTES.COLLECTIONS}/${type}`)}>
+        <Btn
+          backgroundColor="#ffffff"
+          color="#363636"
+          onClick={() => history.push(`${ROUTES.COLLECTIONS}/${type}`)}
+          padding="5px 10px"
+        >
           view products
         </Btn>
       </Div>

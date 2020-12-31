@@ -57,6 +57,10 @@ const BasketFooter = styled.div`
 const SideBasket: React.FC<IProps> = ({ onClose }) => {
   const { basketStore } = useStores();
   const history = useHistory();
+  const handleCheckout = () => {
+    history.push(ROUTES.CHECKOUT);
+    onClose();
+  };
   return useObserver(() => (
     <Root>
       <BasketHeader>
@@ -80,13 +84,7 @@ const SideBasket: React.FC<IProps> = ({ onClose }) => {
       )}
       {basketStore.basketItems.length !== 0 ? (
         <BasketFooter>
-          <Btn
-            backgroundColor="#52b48a"
-            color="#ffff"
-            onClick={() => history.push(ROUTES.CHECKOUT)}
-          >
-            Check 0ut
-          </Btn>
+          <Btn onClick={handleCheckout}>Check 0ut</Btn>
         </BasketFooter>
       ) : (
         <div />
