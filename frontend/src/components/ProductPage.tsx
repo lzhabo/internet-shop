@@ -8,8 +8,6 @@ import Loading from "@components/Loading";
 import Page404 from "@components/Page404";
 import Carousel from "nuka-carousel";
 import Btn from "@components/Btn";
-import MinusIcon from "@components/icons/MinusIcon";
-import PlusIcon from "@components/icons/PlusIcon";
 import { FlexContainer } from "@components/FlexContaner";
 import Subtitle from "@components/Subtitle";
 import NumberInput from "@components/NumberInput";
@@ -66,10 +64,6 @@ const ProductPage: React.FC<IProps> = () => {
   const onClick = () => {
     basketStore.add({ ...basketStore.emptyBasketItem, id, amount });
   };
-  // const onChange = (e: any) => {
-  //   setAmount(e.target.value);
-  //   console.log(amount);  //todo  delete?
-  // };
   if (!initialized)
     return (
       <Root>
@@ -112,7 +106,7 @@ const ProductPage: React.FC<IProps> = () => {
           {/*  />*/}
           {/*  <PlusIcon onClick={() => setAmount(amount + 1)} />*/}
           {/*</Input>*/}
-          <NumberInput value={amount} />
+          <NumberInput value={amount} setValue={setAmount} />
           <Btn backgroundColor="#52b48a" color="#ffff" onClick={onClick}>
             Add to cart
           </Btn>
