@@ -4,6 +4,9 @@ import SmallNavbar from "@components/Header/SmallNavbar";
 import BagIcon from "@components/icons/BagIcon";
 import MenuIcon from "@components/icons/MenuIcon";
 import SideBasket from "@src/screens/Basket/SideBasket";
+import { useStores } from "@stores";
+import { useObserver } from "mobx-react-lite";
+import DotIcon from "@components/icons/Dot";
 
 interface IProps {}
 
@@ -26,21 +29,24 @@ const Logo = styled.div`
   line-height: 20px;
   letter-spacing: 0.1em;
 `;
+
 const Header: React.FC<IProps> = () => {
+  const { basketStore } = useStores();
   const [openedMenu, setOpenedMenu] = useState(false);
   const [openedBasket, setOpenedBasket] = useState(false);
-  return (
+  return useObserver(() => (
     <Root>
       <div>
         <MenuIcon onClick={() => setOpenedMenu(true)} />
       </div>
       <Logo>LOGO</Logo>
-      <div>
+      <div style={{ position: "relative" }}>
         <BagIcon onClick={() => setOpenedBasket(true)} />
+        {basketStore.basketItems.length > 0 ? <DotIcon /> : <div />}
       </div>
       {openedMenu && <SmallNavbar onClose={() => setOpenedMenu(false)} />}
       {openedBasket && <SideBasket onClose={() => setOpenedBasket(false)} />}
     </Root>
-  );
+  ));
 };
 export default Header;

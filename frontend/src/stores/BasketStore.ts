@@ -4,7 +4,6 @@ import { persist } from "mobx-persist";
 
 export interface IBasketItem {
   id: string;
-  costPerOneItem: number;
   amount: number;
 }
 
@@ -17,12 +16,12 @@ export default class BasketStore {
 
   @persist("list") @observable basketItems: IBasketItem[] = [];
 
-  @computed get totalCost() {
-    return this.basketItems.reduce(
-      (acc, val) => acc + val.costPerOneItem * val.amount,
-      0
-    );
-  }
+  // @computed get totalCost() {
+  //   return this.basketItems.reduce(
+  //     (acc, val) => acc + val.costPerOneItem * val.amount,
+  //     0
+  //   );
+  // }
 
   @action changeAmount = (id: string, quantity: number) => {
     const index = this.basketItems.findIndex((i) => i.id === id);
