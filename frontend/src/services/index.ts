@@ -1,6 +1,7 @@
 import apiService from "shop-common/services/apiService";
 import firebaseService from "shop-common/services/firebaseService";
 import productsService from "shop-common/services/productsService";
+import orderService from "shop-common/services/orderService";
 // Initialize Firebase
 const config = {
   apiKey: window._env_.FIREBASE_API_KEY,
@@ -14,4 +15,4 @@ const config = {
 
 firebaseService.firebase.initializeApp(config);
 apiService.init(window._env_.API_BASE, firebaseService.auth);
-export { apiService, productsService, firebaseService };
+export { apiService, productsService, firebaseService, orderService };

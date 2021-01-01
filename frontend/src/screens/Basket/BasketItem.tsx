@@ -51,10 +51,10 @@ const BasketItem: React.FC<IProps> = ({ id }) => {
     return productStore.products.find((p) => p._id === id);
   });
   const basketItem = useObserver(function () {
-    return basketStore.basketItems.find((p) => p.id === id);
+    return basketStore.basketItems.find((p) => p.productId === id);
   });
   const [amount, setAmount] = useState(
-    basketItem === undefined ? 0 : basketItem.amount
+    basketItem === undefined ? 0 : basketItem.quantity
   );
   const handleRemove = () => {
     basketStore.deleteItem(id);

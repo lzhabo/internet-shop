@@ -2,6 +2,20 @@ import axios from "axios";
 import { TProductDocument } from "../src/models/Product";
 import authService from "../src/services/authService";
 
+interface OrderItem {
+  productId: string;
+  quantity: number;
+}
+
+async function randomProduct(): Promise<OrderItem> {
+  const { data: products } = await axios.get("http://localhost:5000/api/v1/products");
+  const product: OrderItem = {
+    productId: products[randomInteger(1, products.length)],
+    quantity: randomInteger(1, 5),
+  };
+  return product;
+}
+
 async function getRandomPhotoUrl(): Promise<string> {
   const { request } = await axios.get(`https://picsum.photos/1080/1080`);
   return request.res.responseUrl;
@@ -32,7 +46,7 @@ function randomMaterial(): string {
 describe("fill db", () => {
   it("fill products", async () => {
     await Promise.all(
-      Array.from({ length: 50 }, async () =>
+      Array.from({ length: 1 }, async () =>
         axios.post("http://localhost:5000/api/v1/products", {
           name: "Product",
           photos: await Promise.all(
@@ -50,7 +64,44 @@ describe("fill db", () => {
       )
     );
   }, 10000000);
+
+  it("fill order", async () => {
+    const createOrder = async () => {
+      const createDate = new Date();
+      const status = "active";
+      const firstName = "lidia";
+      const lastName = "zhabo";
+      const country = "Ukraine";
+      const city = "Kharkiv";
+      const address = "Blah blha";
+      const apartment = "16";
+      const postalCode = "61229";
+      const cart = await Promise.all(Array.from({ length: 8 }, async () => await randomProduct()));
+
+      return {
+        createDate,
+        status,
+        firstName,
+        lastName,
+        country,
+        city,
+        address,
+        apartment,
+        postalCode,
+        cart,
+      };
+    };
+
+    await Promise.all(
+      Array.from(
+        { length: 1 },
+        async () => axios.post("http://localhost:5000/api/v1/orders", await createOrder()),
+        {}
+      )
+    );
+  }, 10000000);
 });
+
 describe("delete data", () => {
   it("delete products", async () => {
     const { data: products } = await axios.get("http://localhost:5000/api/v1/products");
@@ -60,17 +111,16 @@ describe("delete data", () => {
       )
     );
   });
-
-  it("update products", async () => {
-    const { data: products } = await axios.get("http://localhost:5000/api/v1/products");
-    // await Promise.all(
-    //   products.map((product: TProductDocument) =>
-    //     axios.delete(`http://localhost:5000/api/v1/products/${_id}`)
-    //     productsService.updateProduct(product.id, ... product);
-    //   )
-    // );
+  it("delete orders", async () => {
+    const { data: products } = await axios.get("http://localhost:5000/api/v1/orders");
+    await Promise.all(
+      products.map(({ _id }: TProductDocument) =>
+        axios.delete(`http://localhost:5000/api/v1/orders/${_id}`)
+      )
+    );
   });
 });
+
 describe("auth things", () => {
   it("create admin", async () => {
     await authService.createAdmin("lidia.zhabo99@gmail.com");

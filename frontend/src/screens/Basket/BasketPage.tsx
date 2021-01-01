@@ -44,7 +44,11 @@ const BasketPage: React.FC<IProps> = () => {
             <Title>Cart</Title>
           </FlexContainer>
           {basketStore.basketItems.map((item, index) => (
-            <BasketItem id={item.id} quantity={item.amount} key={index} />
+            <BasketItem
+              id={item.productId}
+              quantity={item.quantity}
+              key={index}
+            />
           ))}
           <Total>Total : $ {basketStore.totalCost}</Total>
           <Btn style={{ maxWidth: 250 }} onClick={SubmitCheckout}>

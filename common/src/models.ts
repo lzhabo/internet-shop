@@ -32,23 +32,24 @@ export interface ICustomer {
   email?: string;
 }
 
-interface OrderItem {
-  [key: string]: string;
+export interface IOrderItem {
+  productId: string;
+  quantity: number;
+  // cost: number;
 }
 
 export interface IOrder {
-  number: string;
-  // customer: ICustomer; ---todo
   createDate: Date;
   status: string;
-  orderAmount: string;
-  items: OrderItem[];
   firstName?: string;
   lastName: string;
   country: string;
   city: string;
-  street: string;
-  apartment: string;
+  address: string;
+  apartment?: string;
   postalCode: string;
+  cart: IOrderItem[];
+  totalPrice: number;
   phone: string;
+  email: string;
 }

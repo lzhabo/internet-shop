@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { Form, Input, Button, Select } from "antd";
+import { Form, Input, Button, Select, notification } from "antd";
 import { useHistory } from "react-router-dom";
 import { useStores } from "@stores";
 import Subtitle from "@components/Subtitle";
@@ -9,6 +9,10 @@ import Title from "@components/Title";
 import Btn from "@components/Btn";
 import ArrowLeftIcon from "@components/icons/ArrowLeftIcon";
 import { FlexContainer } from "@components/FlexContaner";
+import { useObserver } from "mobx-react-lite";
+import { IOrderItem } from "shop-common/models";
+
+// import { IOrderItem } from "shop-common/models";
 
 interface IProps {}
 
@@ -19,15 +23,16 @@ const Root = styled.div`
 `;
 
 interface IFormValues {
-  email: string;
   firstName: string;
   lastName: string;
+  country: string;
+  city: string;
   address: string;
   apartment?: string;
-  city: string;
-  zipCode: string;
-  country: string;
+  postalCode: string;
+  totalPrice: number;
   phone: string;
+  email: string;
 }
 
 const layout = {
@@ -40,9 +45,21 @@ const tailLayout = {
 
 const Checkout: React.FC<IProps> = () => {
   const history = useHistory();
-  const { basketStore } = useStores();
+  const { basketStore, orderStore } = useStores();
+  const basket = useObserver(() => basketStore.basketItems);
+  console.log(basket);
+
   const handleFinish = (v: IFormValues) => {
-    console.log("tada confirm");
+    orderStore
+      .add({
+        ...orderStore.emptyOrderItem,
+        ...v,
+        cart: basket,
+      })
+      .then(() => {
+        notification.success({ message: "You order has been sent!" });
+      });
+    // basketStore.cleanBasket();
   };
 
   return (
@@ -93,7 +110,7 @@ const Checkout: React.FC<IProps> = () => {
             <Input />
           </Form.Item>
           <Form.Item
-            name="zipCode"
+            name="postalCode"
             label="ZIP"
             rules={[{ required: true, message: "Enter a ZIP / postal code" }]}
           >
@@ -107,6 +124,11 @@ const Checkout: React.FC<IProps> = () => {
             <Input />
           </Form.Item>
           <Form.Item></Form.Item>
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit">
+              Confirm
+            </Button>
+          </Form.Item>
         </Form>
         <FlexContainer alignItems="center" justifyContent="space-between">
           <ArrowLeftIcon />

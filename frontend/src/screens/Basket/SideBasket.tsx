@@ -78,7 +78,11 @@ const SideBasket: React.FC<IProps> = ({ onClose }) => {
       ) : (
         <ScrollContainer>
           {basketStore.basketItems.map((item, index) => (
-            <BasketItem id={item.id} quantity={item.amount} key={index} />
+            <BasketItem
+              id={item.productId}
+              quantity={item.quantity}
+              key={index}
+            />
           ))}
         </ScrollContainer>
       )}

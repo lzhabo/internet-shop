@@ -4,6 +4,7 @@ import {
   ProductStore,
   AccountStore,
   BasketStore,
+  OrderStore,
 } from "./index";
 import { when } from "mobx";
 import { create } from "mobx-persist";
@@ -18,6 +19,7 @@ export default class RootStore {
   public productStore: ProductStore;
   public accountStore: AccountStore;
   public basketStore: BasketStore;
+  public orderStore: OrderStore;
 
   constructor() {
     this.settingsStore = new SettingsStore(this);
@@ -25,10 +27,13 @@ export default class RootStore {
     this.productStore = new ProductStore(this);
     this.routerStore = new RouterStore(this);
     this.basketStore = new BasketStore(this);
+    this.orderStore = new OrderStore(this);
 
     when(
       () => this.accountStore.initialized,
-      () => Promise.all([this.productStore.sync()]).then()
+      () => {
+        Promise.all([this.productStore.sync()]).then();
+      }
     );
 
     hydrate("basketStore", this.basketStore);

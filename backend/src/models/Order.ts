@@ -1,5 +1,11 @@
 import mongoose, { Document } from "mongoose";
 
+interface OrderItem {
+  productId: string;
+  quantity: number;
+  // cost: number;
+}
+
 export interface Order {
   createDate: Date;
   status: string;
@@ -8,23 +14,35 @@ export interface Order {
   lastName: string;
   country: string;
   city: string;
-  street: string;
-  apartment: string;
+  address: string;
+  apartment?: string;
   postalCode: string;
+  cart: OrderItem[];
+  totalPrice: number;
+  phone: string;
+  email: string;
 }
 
 export type TOrderDocument = Document & Order;
 
 const OrderSchema = new mongoose.Schema({
-  createDate: { type: Date, required: false },
-  status: { type: String, required: false, default: "active" },
-  orderAmount: { type: Number, required: true },
-  // items: { type: String, required: true },
+  createDate: { type: Date, required: true },
+  status: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  firstName: { type: String, required: false },
+  lastName: { type: String, required: true },
+  country: { type: String, required: true },
+  city: { type: String, required: true },
+  address: { type: String, required: true },
+  apartment: { type: String, required: false },
+  postalCode: { type: String, required: false },
+  totalPrice: { type: Number, required: true },
   cart: {
-    items: [
+    type: [
       {
         productId: {
-          type: mongoose.Schema.Types.ObjectId,
+          type: mongoose.Types.ObjectId,
           required: true,
           ref: "Product",
         },
@@ -32,15 +50,13 @@ const OrderSchema = new mongoose.Schema({
           type: Number,
           required: true,
         },
+        // cost: {
+        //   type: Number,
+        //   required: true,
+        // },
       },
     ],
-    firstName: { type: String, required: false },
-    lastName: { type: String, required: false },
-    country: { type: String, required: false },
-    city: { type: String, required: false },
-    street: { type: String, required: false },
-    apartment: { type: String, required: false },
-    postalCode: { type: String, required: false },
+    required: true,
   },
 });
 
