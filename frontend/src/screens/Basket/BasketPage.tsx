@@ -2,35 +2,34 @@ import styled from "@emotion/styled";
 import React from "react";
 import { useObserver } from "mobx-react-lite";
 import { useStores } from "@stores";
-import Subtitle from "@components/Subtitle";
 import BasketItem from "@src/screens/Basket/BasketItem";
 import Btn from "@components/Btn";
+import Title from "@components/Title";
+import { FlexContainer } from "@components/FlexContaner";
 
 interface IProps {}
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
+  //justify-content: center;
 `;
-const ScrollContainer = styled.div`
-  overflow-y: auto;
-`;
+
 const BasketPage: React.FC<IProps> = () => {
   const { basketStore } = useStores();
   const SubmitCheckout = () => {};
   return useObserver(() => (
     <Root>
       {basketStore.basketItems.length === 0 ? (
-        <Subtitle>Your cart is empty</Subtitle>
+        <Title>Your cart is empty</Title>
       ) : (
-        <div>
-          <ScrollContainer>
-            {basketStore.basketItems.map((item, index) => (
-              <BasketItem id={item.id} quantity={item.amount} key={index} />
-            ))}
-          </ScrollContainer>
+        <FlexContainer flexDirection="column" justifyContent="center">
+          <Title>Cart</Title>
+          {basketStore.basketItems.map((item, index) => (
+            <BasketItem id={item.id} quantity={item.amount} key={index} />
+          ))}
           <Btn onClick={SubmitCheckout}>Check 0ut</Btn>
-        </div>
+        </FlexContainer>
       )}
     </Root>
   ));

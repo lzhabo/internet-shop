@@ -21,18 +21,6 @@ export default class ProductStore {
     });
   };
 
-  @computed get emptyProducts() {
-    return {
-      name: "",
-      description: "",
-      price: 0,
-      completed: false,
-      size: "",
-      type: "",
-      material: "",
-    };
-  }
-
   @computed get activeProduct(): IProduct | undefined {
     return this.products[0] ?? undefined;
   }

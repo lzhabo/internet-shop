@@ -38,6 +38,11 @@ const Color = styled.div`
   line-height: 30px;
   letter-spacing: 2px;
 `;
+const Flex = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 
 const BasketItem: React.FC<IProps> = ({ id }) => {
   const { productStore, basketStore } = useStores();
@@ -62,14 +67,14 @@ const BasketItem: React.FC<IProps> = ({ id }) => {
   });
 
   return (
-    <div>
+    <Flex>
       {product !== undefined ? (
         <Root>
           {product.photos !== undefined ? (
             <img
               src={product.photos[0]}
               alt={product.type}
-              style={{ width: 120 }}
+              style={{ maxWidth: 150, maxHeight: 150 }}
             />
           ) : (
             <img src="" alt={product.type} />
@@ -78,19 +83,20 @@ const BasketItem: React.FC<IProps> = ({ id }) => {
             <ProductName>{product.name}</ProductName>
             <Color>{product.material} color</Color>
             <Color>$ {product.price}</Color>
-            <NumberInput value={amount} setValue={setAmount} />
-            <Color
-              style={{ borderBottom: "1px solid rgba(0, 0, 0, 0.2)" }}
-              onClick={handleRemove}
-            >
-              Remove
-            </Color>
+            <div>
+              <NumberInput value={amount} setValue={setAmount} />
+              <Color style={{ cursor: "pointer" }} onClick={handleRemove}>
+                Remove
+              </Color>
+            </div>
           </FlexContainer>
         </Root>
       ) : (
         <div />
       )}
-    </div>
+    </Flex>
   );
 };
 export default BasketItem;
+
+//onmouseover="this.style.backgroundColor='#555';"

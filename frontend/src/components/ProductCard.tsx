@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { IProduct } from "shop-common/models";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface IProps {
   product: IProduct;
@@ -56,8 +56,6 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
   const [pic, setPic] = useState<string>(
     product.photos !== undefined ? product.photos[0] : ""
   );
-
-  const history = useHistory();
   return (
     <Root>
       {product.isOnSale ? (
@@ -68,22 +66,23 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
         <div />
       )}
       {product.photos !== undefined ? (
-        <Img
-          src={pic}
-          alt={product.name}
-          onMouseEnter={() => {
-            if (
-              product.photos !== undefined &&
-              product.photos[1] !== undefined
-            ) {
-              setPic(product.photos !== undefined ? product.photos[1] : "");
-            }
-          }}
-          onMouseOut={() => {
-            setPic(product.photos !== undefined ? product.photos[0] : "pic");
-          }}
-          onClick={() => history.push(`products/${product._id}`)}
-        />
+        <Link to={`/product/${product._id}`}>
+          <Img
+            src={pic}
+            alt={product.name}
+            onMouseEnter={() => {
+              if (
+                product.photos !== undefined &&
+                product.photos[1] !== undefined
+              ) {
+                setPic(product.photos !== undefined ? product.photos[1] : "");
+              }
+            }}
+            onMouseOut={() => {
+              setPic(product.photos !== undefined ? product.photos[0] : "pic");
+            }}
+          />
+        </Link>
       ) : (
         <Img src={noPic} />
       )}

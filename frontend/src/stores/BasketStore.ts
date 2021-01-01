@@ -5,23 +5,26 @@ import { persist } from "mobx-persist";
 export interface IBasketItem {
   id: string;
   amount: number;
+  cost: number;
 }
 
 export default class BasketStore {
   rootStore: RootStore;
 
-  constructor(rootStore: RootStore, initState?: any) {
+  constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
   }
 
   @persist("list") @observable basketItems: IBasketItem[] = [];
 
-  // @computed get totalCost() {
-  //   return this.basketItems.reduce(
-  //     (acc, val) => acc + val.costPerOneItem * val.amount,
-  //     0
-  //   );
-  // }
+  @observable initialized = false;
+
+  @computed get totalCost() {
+    return this.basketItems.reduce(
+      (acc, val) => acc + val.cost * val.amount,
+      0
+    );
+  }
 
   @action changeAmount = (id: string, quantity: number) => {
     const index = this.basketItems.findIndex((i) => i.id === id);
@@ -36,14 +39,13 @@ export default class BasketStore {
     };
   }
 
-  @action
-  add = (v: IBasketItem) => {
-    console.log(v);
-    const index = this.basketItems.findIndex((item) => item.id === v.id);
+  @action add = (id: string, amount: number, cost: number = 1) => {
+    console.log({ id: id, amount: amount, cost: cost });
+    const index = this.basketItems.findIndex((item) => item.id === id);
     if (index !== -1) {
-      this.basketItems[index].amount = v.amount;
+      this.basketItems[index].amount = amount;
     } else {
-      this.basketItems.push(v);
+      this.basketItems.push({ id: id, amount: amount, cost: cost });
     }
     console.log("basket items", this.basketItems);
   };

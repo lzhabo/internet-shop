@@ -10,7 +10,9 @@ const Root = styled.div`
   display: flex;
   font-size: 14px;
 `;
+
 const MinusBtn = styled.button`
+  cursor: pointer;
   width: 40px;
   height: 40px;
   box-shadow: none;
@@ -22,6 +24,7 @@ const MinusBtn = styled.button`
   background: #ffff;
 `;
 const PlusBtn = styled.button`
+  cursor: pointer;
   width: 40px;
   height: 40px;
   boxshadow: none;
@@ -33,7 +36,7 @@ const PlusBtn = styled.button`
   background: #ffff;
 `;
 const Input = styled.input`
-  width: 70px;
+  width: 50px;
   height: 40px;
   border-left: none;
   border-right: none;

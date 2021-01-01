@@ -17,11 +17,12 @@ interface IProps {}
 const Root = styled.div`
   display: flex;
   flex-direction: column;
-  @media (min-width: 660px) {
-    flex-direction: row;
-  }
   justify-content: center;
   padding: 15px;
+  @media (min-width: 660px) {
+    //flex-direction: row;
+    justify-content: space-around;
+  }
 `;
 
 interface ParamIds {
@@ -69,9 +70,9 @@ const ProductPage: React.FC<IProps> = () => {
   });
   const product = products.find((p) => p._id === id);
 
+  const price = typeof product === "undefined" ? 0 : product.price;
   const onClick = () => {
-    if (amount > 0)
-      basketStore.add({ ...basketStore.emptyBasketItem, id, amount });
+    if (amount > 0) basketStore.add(id, amount, price);
   };
   if (!initialized)
     return (
@@ -128,7 +129,7 @@ const ProductPage: React.FC<IProps> = () => {
               src={tags}
               alt="tags"
               width="100%"
-              style={{ maxWidth: 350, padding: "25px 0" }}
+              style={{ maxWidth: 250, padding: "25px 0" }}
             />
           </FlexContainer>
         </FlexContainer>

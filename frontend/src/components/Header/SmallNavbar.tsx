@@ -70,7 +70,7 @@ const SmallNavbar: React.FC<IProps> = ({ onClose }) => {
       />
       <ContentWrapper>
         {navData.map((data, index) => (
-          <Row onClick={() => handleClose(data.route)}>
+          <Row onClick={() => handleClose(data.route)} key={index}>
             <MenuTitle>{data.displayName}</MenuTitle>
           </Row>
         ))}
