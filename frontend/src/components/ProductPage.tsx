@@ -37,7 +37,6 @@ const Description = styled.div`
   font-weight: 400;
   color: #1c1b1b;
   background: #fff;
-  //line-height: 1.65;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
   border-top: 0.5px solid rgba(0, 0, 0, 0.2);
   padding: 15px 0;
@@ -125,12 +124,7 @@ const ProductPage: React.FC<IProps> = () => {
                 </li>
               </ul>
             </Description>
-            <img
-              src={tags}
-              alt="tags"
-              width="100%"
-              style={{ maxWidth: 250, padding: "25px 0" }}
-            />
+            <Img src={tags} alt="tags" />
           </FlexContainer>
         </FlexContainer>
       </Root>
@@ -143,3 +137,11 @@ const ProductPage: React.FC<IProps> = () => {
     );
 };
 export default ProductPage;
+
+const Img = styled.img`
+  width: 100%;
+  @media (min-width: 660px) {
+    max-width: 300px;
+    padding: 25px 0;
+  }
+`;
