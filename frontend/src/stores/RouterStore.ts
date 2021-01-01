@@ -9,7 +9,7 @@ export enum ROUTES {
   PRODUCT_ID = "/product/:id",
   LOGIN = "/account/login",
   REGISTER = "/account/register",
-  BASKET = "/basket",
+  BASKET = "/cart",
   CHECKOUT = "/checkout",
 }
 

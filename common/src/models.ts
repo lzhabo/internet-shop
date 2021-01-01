@@ -32,13 +32,17 @@ export interface ICustomer {
   email?: string;
 }
 
+interface OrderItem {
+  [key: string]: string;
+}
+
 export interface IOrder {
   number: string;
   // customer: ICustomer; ---todo
   createDate: Date;
   status: string;
   orderAmount: string;
-  items: IProduct[];
+  items: OrderItem[];
   firstName?: string;
   lastName: string;
   country: string;
