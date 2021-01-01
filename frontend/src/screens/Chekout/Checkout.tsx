@@ -6,13 +6,9 @@ import { useStores } from "@stores";
 import Subtitle from "@components/Subtitle";
 import { ROUTES } from "@stores/RouterStore";
 import Title from "@components/Title";
-import Btn from "@components/Btn";
 import ArrowLeftIcon from "@components/icons/ArrowLeftIcon";
 import { FlexContainer } from "@components/FlexContaner";
 import { useObserver } from "mobx-react-lite";
-import { IOrderItem } from "shop-common/models";
-
-// import { IOrderItem } from "shop-common/models";
 
 interface IProps {}
 
@@ -36,30 +32,28 @@ interface IFormValues {
 }
 
 const layout = {
-  labelCol: { span: 5 },
-  wrapperCol: { span: 10 },
-};
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
+  // // wrapperCol: { span: 8 },
+  // wrapperCol: { offset: 7, span: 10 },
 };
 
 const Checkout: React.FC<IProps> = () => {
   const history = useHistory();
   const { basketStore, orderStore } = useStores();
   const basket = useObserver(() => basketStore.basketItems);
-  console.log(basket);
 
   const handleFinish = (v: IFormValues) => {
-    orderStore
-      .add({
-        ...orderStore.emptyOrderItem,
-        ...v,
-        cart: basket,
-      })
-      .then(() => {
-        notification.success({ message: "You order has been sent!" });
-      });
-    // basketStore.cleanBasket();
+    if (basket.length > 0) {
+      orderStore
+        .add({
+          ...orderStore.emptyOrderItem,
+          ...v,
+          cart: basket,
+        })
+        .then(() => {
+          notification.success({ message: "You order has been sent!" });
+        });
+      // basketStore.cleanBasket();
+    }
   };
 
   return (
@@ -67,10 +61,6 @@ const Checkout: React.FC<IProps> = () => {
       <Title>Contact information</Title>
       <div>
         <Form
-          // labelCol={{ span: 3 }}
-          // wrapperCol={{ span: 10 }}
-          // layout="horizontal"
-          // onFinish={handleFinish}
           {...layout}
           name="checkoutForm"
           initialValues={{ remember: true }}
@@ -78,59 +68,68 @@ const Checkout: React.FC<IProps> = () => {
         >
           <Form.Item
             name="email"
-            label="Email"
-            rules={[{ required: true, message: "Enter valid email" }]}
+            rules={[
+              { required: true, message: "Enter valid email" },
+              {
+                pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                message: "Please enter valid email",
+              },
+            ]}
           >
-            <Input />
+            <Input placeholder="Email" />
           </Form.Item>
-          <Form.Item name="firstName" label="First name">
-            <Input />
+          <Form.Item name="firstName">
+            <Input placeholder="First name" />
           </Form.Item>
           <Form.Item
             name="lastName"
-            label="Last name"
             rules={[{ required: true, message: "Enter a last name" }]}
           >
-            <Input />
+            <Input placeholder="Last name" />
           </Form.Item>
-          <Form.Item name="country" label="Country">
-            <Select>
-              <Select.Option value="ukraine">Ukraine</Select.Option>
-              <Select.Option value="russia">Russia</Select.Option>
+          <Form.Item
+            name="country"
+            rules={[{ required: true, message: "Enter a country" }]}
+          >
+            <Select placeholder="Country">
+              <Select.Option value="Ukraine">Ukraine</Select.Option>
+              <Select.Option value="Russia">Russia</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item name="city" label="City">
-            <Input />
+          <Form.Item name="city">
+            <Input placeholder="City" />
           </Form.Item>
           <Form.Item
             name="address"
-            label="Address"
             rules={[{ required: true, message: "Enter an address" }]}
           >
-            <Input />
+            <Input placeholder="Address" />
           </Form.Item>
           <Form.Item
             name="postalCode"
-            label="ZIP"
             rules={[{ required: true, message: "Enter a ZIP / postal code" }]}
           >
-            <Input />
+            <Input placeholder="Postal code" />
           </Form.Item>
           <Form.Item
             name="phone"
-            label="Phone"
-            rules={[{ required: true, message: "Please enter phone" }]}
+            rules={[
+              {
+                required: true,
+                message: "Please input you phone",
+              },
+            ]}
           >
-            <Input />
+            <Input placeholder="Phone" />
           </Form.Item>
           <Form.Item></Form.Item>
-          <Form.Item {...tailLayout}>
+          <Form.Item>
             <Button type="primary" htmlType="submit">
-              Confirm
+              Continue to shipping
             </Button>
           </Form.Item>
         </Form>
-        <FlexContainer alignItems="center" justifyContent="space-between">
+        <FlexContainer alignItems="center">
           <ArrowLeftIcon />
           <Subtitle onClick={() => history.push(ROUTES.BASKET)}>
             Return to cart

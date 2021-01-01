@@ -3,7 +3,6 @@ import mongoose, { Document } from "mongoose";
 interface OrderItem {
   productId: string;
   quantity: number;
-  // cost: number;
 }
 
 export interface Order {
@@ -36,8 +35,9 @@ const OrderSchema = new mongoose.Schema({
   city: { type: String, required: true },
   address: { type: String, required: true },
   apartment: { type: String, required: false },
-  postalCode: { type: String, required: false },
-  totalPrice: { type: Number, required: true },
+  postalCode: { type: String, required: true },
+  shipping: { type: String, required: true },
+  totalPrice: { type: Number, required: false },
   cart: {
     type: [
       {
