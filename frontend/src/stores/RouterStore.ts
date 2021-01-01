@@ -6,10 +6,10 @@ export enum ROUTES {
   ROOT = "/",
   COLLECTIONS = "/collections",
   COLLECTIONS_TYPE = "/collections/:type",
-  PRODUCT_ID = "/collections/:type/:id",
+  PRODUCT_ID = "/product/:id",
   LOGIN = "/account/login",
   REGISTER = "/account/register",
-  BASKET = "/basket",
+  BASKET = "/cart",
   CHECKOUT = "/checkout",
 }
 

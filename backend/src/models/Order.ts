@@ -1,43 +1,63 @@
 import mongoose, { Document } from "mongoose";
-import { IProduct } from "shop-common/models";
 
-export interface orderItem {
+interface OrderItem {
   productId: string;
-  amount: number;
+  quantity: number;
+  // cost: number;
 }
 
 export interface Order {
-  number: string;
-  items: orderItem[];
+  createDate: Date;
+  status: string;
+  // customer: ICustomer; ---todo
+  firstName?: string;
+  lastName: string;
+  country: string;
+  city: string;
+  address: string;
+  apartment?: string;
+  postalCode: string;
+  cart: OrderItem[];
+  totalPrice: number;
+  phone: string;
+  email: string;
 }
 
 export type TOrderDocument = Document & Order;
 
 const OrderSchema = new mongoose.Schema({
-  number: { type: String, required: true },
-  createDate: { type: Date, required: false },
-  status: { type: String, required: false, default: "active" },
-  orderAmount: { type: String, required: true },
-  items: { type: String, required: true },
+  createDate: { type: Date, required: true },
+  status: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  firstName: { type: String, required: false },
+  lastName: { type: String, required: true },
+  country: { type: String, required: true },
+  city: { type: String, required: true },
+  address: { type: String, required: true },
+  apartment: { type: String, required: false },
+  postalCode: { type: String, required: false },
+  totalPrice: { type: Number, required: true },
+  cart: {
+    type: [
+      {
+        productId: {
+          type: mongoose.Types.ObjectId,
+          required: true,
+          ref: "Product",
+        },
+        quantity: {
+          type: Number,
+          required: true,
+        },
+        // cost: {
+        //   type: Number,
+        //   required: true,
+        // },
+      },
+    ],
+    required: true,
+  },
 });
 
 export const Order = mongoose.model<TOrderDocument>("Order", OrderSchema);
-
-//export interface IPost {
-//   user: string;
-//   photo: string;
-//   location?: string;
-//   likes: number;
-//   description?: string;
-//   comments?: string[];
-// }
-//
-// export type TPostDocument = Document & IPost;
-//
-// const UserSchema = new mongoose.Schema({
-//   user: { type: mongoose.Types.ObjectId, ref: "User" },
-//   description: { type: String, required: false },
-//   location: { type: String, required: false },
-//   photo: { type: String, required: true },
-//   likes: { type: Number, required: true },
-// });

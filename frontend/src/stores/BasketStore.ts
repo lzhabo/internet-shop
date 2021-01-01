@@ -3,29 +3,36 @@ import { RootStore } from "@stores/index";
 import { persist } from "mobx-persist";
 
 export interface IBasketItem {
-  id: string;
-  amount: number;
+  productId: string;
+  quantity: number;
+  cost: number;
 }
 
 export default class BasketStore {
   rootStore: RootStore;
 
-  constructor(rootStore: RootStore, initState?: any) {
+  constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
   }
 
   @persist("list") @observable basketItems: IBasketItem[] = [];
 
-  // @computed get totalCost() {
-  //   return this.basketItems.reduce(
-  //     (acc, val) => acc + val.costPerOneItem * val.amount,
-  //     0
-  //   );
-  // }
+  @observable initialized = false;
+
+  @computed get totalCost() {
+    return this.basketItems.reduce(
+      (acc, val) => acc + val.cost * val.quantity,
+      0
+    );
+  }
 
   @action changeAmount = (id: string, quantity: number) => {
-    const index = this.basketItems.findIndex((i) => i.id === id);
-    this.basketItems[index].amount = quantity;
+    const index = this.basketItems.findIndex((i) => i.productId === id);
+    this.basketItems[index].quantity = quantity;
+  };
+
+  @action cleanBasket = () => {
+    this.basketItems = [];
   };
 
   @computed get emptyBasketItem() {
@@ -36,20 +43,19 @@ export default class BasketStore {
     };
   }
 
-  @action
-  add = (v: IBasketItem) => {
-    console.log(v);
-    const index = this.basketItems.findIndex((item) => item.id === v.id);
+  @action add = (id: string, amount: number, cost: number = 1) => {
+    console.log({ id: id, amount: amount, cost: cost });
+    const index = this.basketItems.findIndex((item) => item.productId === id);
     if (index !== -1) {
-      this.basketItems[index].amount = v.amount;
+      this.basketItems[index].quantity = amount;
     } else {
-      this.basketItems.push(v);
+      this.basketItems.push({ productId: id, quantity: amount, cost: cost });
     }
     console.log("basket items", this.basketItems);
   };
 
   @action deleteItem = (id: string) => {
-    const index = this.basketItems.findIndex((item) => item.id === id);
+    const index = this.basketItems.findIndex((item) => item.productId === id);
     this.basketItems.splice(index, 1);
   };
 }
