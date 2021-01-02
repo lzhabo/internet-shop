@@ -61,6 +61,7 @@ const tags =
   "https://cdn.shopify.com/s/files/1/0459/0744/3880/files/FOOTER_purabaia-min_2.png?v=1598543760";
 const ProductPage: React.FC<IProps> = () => {
   const { id } = useParams<ParamIds>();
+  console.log(id);
   const { productStore, basketStore } = useStores();
   const [amount, setAmount] = useState<number>(1);
   const initialized = useObserver(() => productStore.initialized);
