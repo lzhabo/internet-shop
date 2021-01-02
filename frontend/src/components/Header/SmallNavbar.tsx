@@ -16,12 +16,12 @@ const Root = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
-  right: 25%;
+  right: 15%;
   left: 0;
   padding: 30px 30px;
   z-index: 3;
   @media (min-width: 660px) {
-    right: 60%;
+    right: 50%;
   }
 `;
 const ContentWrapper = styled.div`

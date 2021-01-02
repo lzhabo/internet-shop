@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useStores } from "@stores";
 import Title from "@components/Title";
 import Loading from "@components/Loading";
-import Page404 from "@components/Page404";
+import Page404 from "@src/screens/Page404";
 import Carousel from "nuka-carousel";
 import Btn from "@components/Btn";
 import { FlexContainer } from "@components/FlexContaner";
@@ -142,7 +142,7 @@ export default ProductPage;
 const Img = styled.img`
   width: 100%;
   @media (min-width: 660px) {
-    max-width: 300px;
+    max-width: 610px;
     padding: 25px 0;
   }
 `;

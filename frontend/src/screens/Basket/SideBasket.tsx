@@ -88,7 +88,9 @@ const SideBasket: React.FC<IProps> = ({ onClose }) => {
       )}
       {basketStore.basketItems.length !== 0 ? (
         <BasketFooter>
-          <Btn onClick={handleCheckout}>Check 0ut</Btn>
+          <Btn onClick={handleCheckout}>
+            Check 0ut &middot; ${basketStore.totalCost}
+          </Btn>
         </BasketFooter>
       ) : (
         <div />

@@ -16,6 +16,7 @@ export interface IProduct {
   material: string;
   type: string;
   isOnSale?: boolean;
+  addedDate: Date;
 }
 
 export interface IAdmin {

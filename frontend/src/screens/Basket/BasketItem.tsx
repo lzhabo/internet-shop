@@ -60,9 +60,10 @@ const BasketItem: React.FC<IProps> = ({ id }) => {
     basketStore.deleteItem(id);
   };
   useEffect(() => {
+    basketStore.changeAmount(id, amount);
     if (amount === 0) {
       handleRemove();
-      console.log("remove component from basket");
+      console.log("removed component from basket");
     }
   });
 
@@ -98,5 +99,3 @@ const BasketItem: React.FC<IProps> = ({ id }) => {
   );
 };
 export default BasketItem;
-
-//onmouseover="this.style.backgroundColor='#555';"

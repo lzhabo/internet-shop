@@ -7,6 +7,7 @@ export enum ROUTES {
   COLLECTIONS = "/collections",
   COLLECTIONS_TYPE = "/collections/:type",
   PRODUCT_ID = "/product/:id",
+  PRODUCTS = "/products",
   LOGIN = "/account/login",
   REGISTER = "/account/register",
   BASKET = "/cart",

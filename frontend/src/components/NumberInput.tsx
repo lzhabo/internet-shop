@@ -9,6 +9,8 @@ interface IProps {
 const Root = styled.div`
   display: flex;
   font-size: 14px;
+  &:read-only {
+  }
 `;
 
 const MinusBtn = styled.button`
@@ -44,6 +46,7 @@ const Input = styled.input`
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   outline: none;
   text-align: center;
+  cursor: default;
 `;
 
 const NumberInput: React.FC<IProps> = ({ value, setValue }) => {
@@ -54,7 +57,7 @@ const NumberInput: React.FC<IProps> = ({ value, setValue }) => {
   return (
     <Root>
       <MinusBtn onClick={handleDecrement}>-</MinusBtn>
-      <Input value={value} onChange={handleOnChange} />
+      <Input readOnly={true} value={value} onChange={handleOnChange} />
       <PlusBtn onClick={handleIncrement}>+</PlusBtn>
     </Root>
   );

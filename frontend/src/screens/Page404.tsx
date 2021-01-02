@@ -21,6 +21,7 @@ const Title = styled.div`
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  text-align: center;
 `;
 const Page404: React.FC<IProps> = () => {
   const history = useHistory();
@@ -29,7 +30,9 @@ const Page404: React.FC<IProps> = () => {
     <Root>
       <Title>404</Title>
       <Title>The page you are looking for cannot be found.</Title>
-      <Btn onClick={() => history.push(ROUTES.ROOT)}>Go to homepage</Btn>
+      <Btn style={{ maxWidth: 350 }} onClick={() => history.push(ROUTES.ROOT)}>
+        Go to homepage
+      </Btn>
     </Root>
   );
 };
