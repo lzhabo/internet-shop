@@ -17,6 +17,7 @@ const Root = styled.div`
   justify-content: flex-end;
   padding: 35px 25px;
 `;
+
 const Total = styled.div`
   font-family: Montserrat, sans-serif;
   font-weight: 500;

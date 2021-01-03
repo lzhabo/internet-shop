@@ -9,12 +9,22 @@ import Btn from "@components/Btn";
 import { ROUTES } from "@stores/RouterStore";
 import { useHistory } from "react-router-dom";
 import { FlexContainer } from "@components/FlexContaner";
+import { keyframes } from "@emotion/core";
 
 interface IProps {
   onClose: () => void;
 }
 
+const SlideRight = keyframes`
+ 0% {
+     transform: translateX(100%);
+    }
+100%{
+     transform: translateX(0);
+    }
+`;
 const Root = styled.div`
+  animation: ${SlideRight} 400ms;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -32,6 +42,7 @@ const Root = styled.div`
   }
 
   background: #ffff;
+  transition: margin 0.5s;
 `;
 const ScrollContainer = styled.div`
   overflow-y: auto;
@@ -69,7 +80,7 @@ const SideBasket: React.FC<IProps> = ({ onClose }) => {
     onClose();
   };
   return useObserver(() => (
-    <div>
+    <div style={{ position: "fixed" }}>
       <Background onClick={onClose} />
       <Root>
         <BasketHeader>

@@ -54,9 +54,6 @@ const Price = styled.div`
   color: #3dc560;
   padding-bottom: 5px;
 `;
-const ContainerDimensions = styled.div`
-  max-width: 610px;
-`;
 
 const tags =
   "https://cdn.shopify.com/s/files/1/0459/0744/3880/files/FOOTER_purabaia-min_2.png?v=1598543760";
@@ -75,11 +72,10 @@ const ProductPage: React.FC<IProps> = () => {
   const onClick = () => {
     if (amount > 0) {
       basketStore.add(id, amount, price);
-      setOpenedBasket(true);
+      //setOpenedBasket(true);
     }
   };
-  const [openedBasket, setOpenedBasket] = useState(false);
-
+  // const [openedBasket, setOpenedBasket] = useState(false);  todo
   if (!initialized)
     return (
       <Root>
@@ -112,7 +108,9 @@ const ProductPage: React.FC<IProps> = () => {
           <Btn style={{ maxWidth: 450 }} onClick={onClick}>
             Add to cart
           </Btn>
-
+          {/*{openedBasket && (*/}
+          {/*  <SideBasket onClose={() => setOpenedBasket(false)} />*/}
+          {/*)}*/}
           <FlexContainer flexDirection="column" alignItems="center">
             <Description>
               <h3>
@@ -134,7 +132,6 @@ const ProductPage: React.FC<IProps> = () => {
             <Img src={tags} alt="tags" />
           </FlexContainer>
         </FlexContainer>
-        {openedBasket && <SideBasket onClose={() => setOpenedBasket(false)} />}
       </Root>
     );
   else

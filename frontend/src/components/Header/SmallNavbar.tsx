@@ -4,12 +4,19 @@ import { Row } from "../flex";
 import { useHistory } from "react-router-dom";
 import { ROUTES } from "@stores/RouterStore";
 import CloseIconWhite from "@components/icons/CloseIconWhite";
+import { keyframes } from "@emotion/core";
 
 interface IProps {
   onClose: () => void;
 }
 
+const SlideLeft = keyframes`
+ 0% {
+     transform: translateX(-100%);
+    }
+`;
 const Root = styled.div`
+  animation: ${SlideLeft} 400ms;
   display: flex;
   flex-direction: column;
   background: #41545a;
@@ -24,6 +31,7 @@ const Root = styled.div`
     right: 50%;
   }
 `;
+
 const Background = styled.div`
   position: fixed;
   z-index: 2;
@@ -72,7 +80,7 @@ const SmallNavbar: React.FC<IProps> = ({ onClose }) => {
   };
 
   return (
-    <div>
+    <div style={{ position: "fixed" }}>
       <Background onClick={onClose} />
       <Root>
         <CloseIconWhite

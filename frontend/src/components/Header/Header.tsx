@@ -18,7 +18,7 @@ const Root = styled.div`
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 1;
   background: #ffff;
   @media (min-width: 1440px) {
     padding: 25px 0 0;
