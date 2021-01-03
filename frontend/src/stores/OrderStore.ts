@@ -1,5 +1,5 @@
 import { RootStore } from "./index";
-import { action, computed, observable, runInAction } from "mobx";
+import { action, computed, observable } from "mobx";
 import { orderService } from "../services";
 import { IOrder } from "shop-common/models";
 import { notification } from "antd";
@@ -29,22 +29,12 @@ export default class OrderStore {
       country: "",
       city: "",
       address: "",
-      apartment: "",
       postalCode: "",
       cart: [],
       totalPrice: 0,
+      shipping: "default",
     };
   }
-
-  // @computed get emptyOrderItem() {
-  //   return {
-  //     createDate: new Date(),
-  //     status: "new",
-  //     firstName: "",
-  //     totalPrice: 0,
-  //   };
-  // }
-  //
 
   @action add = async (data: IOrder) => {
     try {

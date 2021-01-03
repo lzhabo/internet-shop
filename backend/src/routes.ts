@@ -29,16 +29,16 @@ router.post("/auth/admin", authService.authorizeAdmin);
 router.route("/upload").post(authService.withAdminAuthMW, uploadService.upload);
 
 // Order routes
-router.route("/orders/").get(authService.withAdminAuthMW, orderController.getAllOrders);
-router.route("/orders/:id").get(authService.withAuthMW, orderController.getOrderById);
-router.route("/orders/").post(authService.withAuthMW, orderController.createOrder);
-router.route("/orders/:id").put(authService.withAuthMW, orderController.updateOrder);
-router.route("/orders/:id").delete(authService.withAdminAuthMW, orderController.deleteOrder);
+// router.route("/orders/").get(authService.withAdminAuthMW, orderController.getAllOrders);
+// router.route("/orders/:id").get(authService.withAuthMW, orderController.getOrderById);
+// router.route("/orders/").post(authService.withAuthMW, orderController.createOrder);
+// router.route("/orders/:id").put(authService.withAuthMW, orderController.updateOrder);
+// router.route("/orders/:id").delete(authService.withAdminAuthMW, orderController.deleteOrder);
 
-// router.get("/orders/", orderController.getAllOrders);
-// router.get("/orders/:id", orderController.getOrderById);
-// router.post("/orders/", orderController.createOrder);
-// router.put("/orders/:id", orderController.updateOrder);
-// router.delete("/orders/:id", orderController.deleteOrder);
+router.get("/orders/", orderController.getAllOrders);
+router.get("/orders/:id", orderController.getOrderById);
+router.post("/orders/", orderController.createOrder);
+router.put("/orders/:id", orderController.updateOrder);
+router.delete("/orders/:id", orderController.deleteOrder);
 
 export { router };

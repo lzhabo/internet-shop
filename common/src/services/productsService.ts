@@ -12,17 +12,7 @@ export default {
   product: (id: string): Promise<IProduct> =>
     apiService.makeApiRequest(`api/v1/products/${id}`),
 
-  createProduct: (data: {
-    images?: string[];
-    size: number;
-    material: string;
-    price: number;
-    name: string;
-    description?: string;
-    disabled: boolean;
-    type: string;
-    amount: number;
-  }): Promise<IProduct> =>
+  createProduct: (data: IProduct): Promise<IProduct> =>
     apiService.makeApiRequest(`api/v1/products/`, { method: "POST", data }),
 
   updateProduct: (id: string, data: TUpdateProductParams): Promise<IProduct> =>

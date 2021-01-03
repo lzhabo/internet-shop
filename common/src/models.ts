@@ -33,10 +33,9 @@ export interface ICustomer {
   email?: string;
 }
 
-export interface IOrderItem {
+export interface IBasketItem {
   productId: string;
   quantity: number;
-  // cost: number;
 }
 
 export interface IOrder {
@@ -49,8 +48,9 @@ export interface IOrder {
   address: string;
   apartment?: string;
   postalCode: string;
-  cart: IOrderItem[];
+  cart: IBasketItem[];
   totalPrice: number;
   phone: string;
   email: string;
+  shipping: string;
 }

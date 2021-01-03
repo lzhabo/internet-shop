@@ -10,6 +10,7 @@ export interface Product {
   material: string;
   type: string;
   isOnSale?: boolean;
+  addedDate: Date;
 }
 
 export type TProductDocument = Document & Product;
@@ -24,6 +25,7 @@ const ProductSchema = new mongoose.Schema({
   disabled: { type: Boolean, required: false },
   isOnSale: { type: Boolean, required: false },
   type: { type: String, required: true },
+  addedDate: { type: Date, required: true },
 });
 
 export const Product = mongoose.model<TProductDocument>("Product", ProductSchema);

@@ -19,10 +19,19 @@ const Root = styled.div`
   right: 15%;
   left: 0;
   padding: 30px 30px;
-  z-index: 3;
+  z-index: 5;
   @media (min-width: 660px) {
     right: 50%;
   }
+`;
+const Background = styled.div`
+  position: fixed;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 `;
 const ContentWrapper = styled.div`
   display: flex;
@@ -63,19 +72,22 @@ const SmallNavbar: React.FC<IProps> = ({ onClose }) => {
   };
 
   return (
-    <Root>
-      <CloseIconWhite
-        onClick={onClose}
-        style={{ paddingBottom: 5, margin: -6 }}
-      />
-      <ContentWrapper>
-        {navData.map((data, index) => (
-          <Row onClick={() => handleClose(data.route)} key={index}>
-            <MenuTitle>{data.displayName}</MenuTitle>
-          </Row>
-        ))}
-      </ContentWrapper>
-    </Root>
+    <div>
+      <Background onClick={onClose} />
+      <Root>
+        <CloseIconWhite
+          onClick={onClose}
+          style={{ paddingBottom: 5, margin: -6 }}
+        />
+        <ContentWrapper>
+          {navData.map((data, index) => (
+            <Row onClick={() => handleClose(data.route)} key={index}>
+              <MenuTitle>{data.displayName}</MenuTitle>
+            </Row>
+          ))}
+        </ContentWrapper>
+      </Root>
+    </div>
   );
 };
 export default SmallNavbar;

@@ -11,6 +11,7 @@ import Btn from "@components/Btn";
 import { FlexContainer } from "@components/FlexContaner";
 import Subtitle from "@components/Subtitle";
 import NumberInput from "@components/NumberInput";
+import SideBasket from "@src/screens/Basket";
 
 interface IProps {}
 
@@ -72,8 +73,13 @@ const ProductPage: React.FC<IProps> = () => {
 
   const price = typeof product === "undefined" ? 0 : product.price;
   const onClick = () => {
-    if (amount > 0) basketStore.add(id, amount, price);
+    if (amount > 0) {
+      basketStore.add(id, amount, price);
+      setOpenedBasket(true);
+    }
   };
+  const [openedBasket, setOpenedBasket] = useState(false);
+
   if (!initialized)
     return (
       <Root>
@@ -128,6 +134,7 @@ const ProductPage: React.FC<IProps> = () => {
             <Img src={tags} alt="tags" />
           </FlexContainer>
         </FlexContainer>
+        {openedBasket && <SideBasket onClose={() => setOpenedBasket(false)} />}
       </Root>
     );
   else
