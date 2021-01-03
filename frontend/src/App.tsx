@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Footer from "@components/Footer";
+import Footer from "@src/screens/Footer";
 import { Route, Switch } from "react-router-dom";
 import { ROUTES } from "./stores/RouterStore";
 import SalesHeader from "@components/Header/SalesHeader";
-import CollectionsType from "@components/Collections/CollectionsType";
-import CollectionsList from "@components/Collections/CollectionsList";
-import ProductPage from "@components/ProductPage";
+import CollectionsType from "@src/screens/Collections/CollectionsType";
+import CollectionsList from "@src/screens/Collections/CollectionsList";
+import ProductPage from "@src/screens/Product/ProductPage";
 import Header from "@components/Header/Header";
 import LoginPage from "@components/Auth/LoginPage";
 import RegistrationPage from "@components/Auth/RegistrationPage";
@@ -35,7 +35,7 @@ const App: React.FunctionComponent<IProps> = () => {
         <Route path={ROUTES.COLLECTIONS_TYPE} exact>
           <CollectionsType />
         </Route>
-        <Route path={ROUTES.COLLECTIONS} exact>
+        <Route path={[ROUTES.COLLECTIONS, ROUTES.PRODUCTS]} exact>
           <CollectionsList />
         </Route>
         <Route path={ROUTES.PRODUCT_ID} exact>

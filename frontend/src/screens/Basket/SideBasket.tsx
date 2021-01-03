@@ -9,12 +9,22 @@ import Btn from "@components/Btn";
 import { ROUTES } from "@stores/RouterStore";
 import { useHistory } from "react-router-dom";
 import { FlexContainer } from "@components/FlexContaner";
+import { keyframes } from "@emotion/core";
 
 interface IProps {
   onClose: () => void;
 }
 
+const SlideRight = keyframes`
+ 0% {
+     transform: translateX(100%);
+    }
+100%{
+     transform: translateX(0);
+    }
+`;
 const Root = styled.div`
+  animation: ${SlideRight} 400ms;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -23,7 +33,7 @@ const Root = styled.div`
   bottom: 0;
   right: 0;
   left: 15%;
-  z-index: 10001;
+  z-index: 5;
   @media (min-width: 660px) {
     left: 50%;
   }
@@ -32,13 +42,21 @@ const Root = styled.div`
   }
 
   background: #ffff;
+  transition: margin 0.5s;
 `;
 const ScrollContainer = styled.div`
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  //justify-content: center;
-  //align-items: flex-start;
+`;
+const Background = styled.div`
+  position: fixed;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `;
 const BasketHeader = styled.div`
   display: flex;
@@ -62,38 +80,43 @@ const SideBasket: React.FC<IProps> = ({ onClose }) => {
     onClose();
   };
   return useObserver(() => (
-    <Root>
-      <BasketHeader>
-        <Title>Cart</Title>
-        <CloseIconBlack onClick={onClose} />
-      </BasketHeader>
-      {basketStore.basketItems.length === 0 ? (
-        <FlexContainer
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Title>Your cart is empty</Title>
-        </FlexContainer>
-      ) : (
-        <ScrollContainer>
-          {basketStore.basketItems.map((item, index) => (
-            <BasketItem
-              id={item.productId}
-              quantity={item.quantity}
-              key={index}
-            />
-          ))}
-        </ScrollContainer>
-      )}
-      {basketStore.basketItems.length !== 0 ? (
-        <BasketFooter>
-          <Btn onClick={handleCheckout}>Check 0ut</Btn>
-        </BasketFooter>
-      ) : (
-        <div />
-      )}
-    </Root>
+    <div style={{ position: "fixed" }}>
+      <Background onClick={onClose} />
+      <Root>
+        <BasketHeader>
+          <Title>Cart</Title>
+          <CloseIconBlack onClick={onClose} />
+        </BasketHeader>
+        {basketStore.basketItems.length === 0 ? (
+          <FlexContainer
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Title>Your cart is empty</Title>
+          </FlexContainer>
+        ) : (
+          <ScrollContainer>
+            {basketStore.basketItems.map((item, index) => (
+              <BasketItem
+                id={item.productId}
+                quantity={item.quantity}
+                key={index}
+              />
+            ))}
+          </ScrollContainer>
+        )}
+        {basketStore.basketItems.length !== 0 ? (
+          <BasketFooter>
+            <Btn onClick={handleCheckout}>
+              Check 0ut &middot; ${basketStore.totalCost}
+            </Btn>
+          </BasketFooter>
+        ) : (
+          <div />
+        )}
+      </Root>
+    </div>
   ));
 };
 export default SideBasket;

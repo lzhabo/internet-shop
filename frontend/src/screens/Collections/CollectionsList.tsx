@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import CollectionItem from "@components/Collections/CollectionItem";
+import CollectionItem from "@src/screens/Collections/CollectionItem";
 
 interface IProps {}
 
@@ -55,7 +55,6 @@ const Title = styled.div`
   font-weight: 500;
   font-size: 22px;
   line-height: 30px;
-
   letter-spacing: 2px;
   text-transform: uppercase;
   margin: 50px 0 20px;

@@ -1,6 +1,6 @@
 import mongoose, { Document } from "mongoose";
 
-interface OrderItem {
+interface IBasketItem {
   productId: string;
   quantity: number;
 }
@@ -16,7 +16,7 @@ export interface Order {
   address: string;
   apartment?: string;
   postalCode: string;
-  cart: OrderItem[];
+  cart: IBasketItem[];
   totalPrice: number;
   phone: string;
   email: string;
@@ -50,10 +50,6 @@ const OrderSchema = new mongoose.Schema({
           type: Number,
           required: true,
         },
-        // cost: {
-        //   type: Number,
-        //   required: true,
-        // },
       },
     ],
     required: true,

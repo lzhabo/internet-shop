@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { useStores } from "@stores";
-import ProductCard from "@components/ProductCard";
+import ProductCard from "@src/screens/Product/ProductCard";
 import { useParams } from "react-router-dom";
 import { useObserver } from "mobx-react-lite";
-import Page404 from "@components/Page404";
+import Page404 from "@src/screens/Page404";
 import Loading from "@components/Loading";
 
 interface IProps {}

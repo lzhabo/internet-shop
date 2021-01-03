@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import CollectionItem from "@components/Collections/CollectionItem";
+import CollectionItem from "@src/screens/Collections/CollectionItem";
 
 interface IProps {}
 

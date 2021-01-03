@@ -5,12 +5,13 @@ import { useParams } from "react-router-dom";
 import { useStores } from "@stores";
 import Title from "@components/Title";
 import Loading from "@components/Loading";
-import Page404 from "@components/Page404";
+import Page404 from "@src/screens/Page404";
 import Carousel from "nuka-carousel";
 import Btn from "@components/Btn";
 import { FlexContainer } from "@components/FlexContaner";
 import Subtitle from "@components/Subtitle";
 import NumberInput from "@components/NumberInput";
+import SideBasket from "@src/screens/Basket";
 
 interface IProps {}
 
@@ -37,7 +38,6 @@ const Description = styled.div`
   font-weight: 400;
   color: #1c1b1b;
   background: #fff;
-  //line-height: 1.65;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
   border-top: 0.5px solid rgba(0, 0, 0, 0.2);
   padding: 15px 0;
@@ -54,14 +54,12 @@ const Price = styled.div`
   color: #3dc560;
   padding-bottom: 5px;
 `;
-const ContainerDimensions = styled.div`
-  max-width: 610px;
-`;
 
 const tags =
   "https://cdn.shopify.com/s/files/1/0459/0744/3880/files/FOOTER_purabaia-min_2.png?v=1598543760";
 const ProductPage: React.FC<IProps> = () => {
   const { id } = useParams<ParamIds>();
+  console.log(id);
   const { productStore, basketStore } = useStores();
   const [amount, setAmount] = useState<number>(1);
   const initialized = useObserver(() => productStore.initialized);
@@ -72,8 +70,12 @@ const ProductPage: React.FC<IProps> = () => {
 
   const price = typeof product === "undefined" ? 0 : product.price;
   const onClick = () => {
-    if (amount > 0) basketStore.add(id, amount, price);
+    if (amount > 0) {
+      basketStore.add(id, amount, price);
+      //setOpenedBasket(true);
+    }
   };
+  // const [openedBasket, setOpenedBasket] = useState(false);  todo
   if (!initialized)
     return (
       <Root>
@@ -106,7 +108,9 @@ const ProductPage: React.FC<IProps> = () => {
           <Btn style={{ maxWidth: 450 }} onClick={onClick}>
             Add to cart
           </Btn>
-
+          {/*{openedBasket && (*/}
+          {/*  <SideBasket onClose={() => setOpenedBasket(false)} />*/}
+          {/*)}*/}
           <FlexContainer flexDirection="column" alignItems="center">
             <Description>
               <h3>
@@ -125,12 +129,7 @@ const ProductPage: React.FC<IProps> = () => {
                 </li>
               </ul>
             </Description>
-            <img
-              src={tags}
-              alt="tags"
-              width="100%"
-              style={{ maxWidth: 250, padding: "25px 0" }}
-            />
+            <Img src={tags} alt="tags" />
           </FlexContainer>
         </FlexContainer>
       </Root>
@@ -143,3 +142,11 @@ const ProductPage: React.FC<IProps> = () => {
     );
 };
 export default ProductPage;
+
+const Img = styled.img`
+  width: 100%;
+  @media (min-width: 660px) {
+    max-width: 610px;
+    padding: 25px 0;
+  }
+`;

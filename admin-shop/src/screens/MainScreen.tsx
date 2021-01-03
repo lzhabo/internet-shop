@@ -36,7 +36,7 @@ const MainScreen: React.FC<IProps> = () => {
           <Menu.Item key="1" onClick={() => history.push(ROUTES.PRODUCTS)}>
             All products
           </Menu.Item>
-          <Menu.Item key="3" onClick={() => history.push(ROUTES.NEW)}>
+          <Menu.Item key="3" onClick={() => history.push(ROUTES.ADD_PRODUCT)}>
             Add product
           </Menu.Item>
         </Menu>
@@ -46,7 +46,7 @@ const MainScreen: React.FC<IProps> = () => {
           <Content style={{ margin: "0 16px" }}>
             <div>
               <Switch>
-                <Route exec path={ROUTES.NEW}>
+                <Route exec path={ROUTES.ADD_PRODUCT}>
                   <NewProductForm />
                 </Route>
                 <Route exec path={ROUTES.REGISTER}>

@@ -6,7 +6,7 @@ export enum ROUTES {
   ROOT = "/",
   PRODUCTS = "/products",
   EDIT = "/product/:id",
-  NEW = "/new",
+  ADD_PRODUCT = "/addProduct",
   REGISTER = "/registration",
   LOGIN = "/login",
 }

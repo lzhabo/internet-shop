@@ -60,6 +60,7 @@ describe("fill db", () => {
           oldPrice: randomInteger(5, 30),
           isOnSale: Math.random() < 0.5,
           amount: 100,
+          addedDate: new Date(),
         })
       )
     );

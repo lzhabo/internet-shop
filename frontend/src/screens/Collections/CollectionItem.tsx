@@ -38,6 +38,7 @@ const Div = styled.div`
 `;
 const CollectionItem: React.FC<IProps> = ({ pic, type }) => {
   const history = useHistory();
+
   return (
     <Root>
       <Img src={pic} />
