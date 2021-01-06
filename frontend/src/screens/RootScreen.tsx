@@ -45,6 +45,9 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  & > * {
+    padding: 20px 10px;
+  }
 `;
 const RootScreen: React.FC<IProps> = () => {
   return (

@@ -5,8 +5,8 @@ import { reaction } from "mobx";
 export enum ROUTES {
   ROOT = "/",
   PRODUCTS = "/products",
-  EDIT = "/product/:id",
-  ADD_PRODUCT = "/addProduct",
+  EDIT = "/products/edit/:id?",
+  NEW_PRODUCT = "/products/new",
   REGISTER = "/registration",
   LOGIN = "/login",
 }

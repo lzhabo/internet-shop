@@ -2,42 +2,39 @@ import styled from "@emotion/styled";
 import React from "react";
 import { useStores } from "@stores";
 import { useObserver } from "mobx-react-lite";
-import { Card, Skeleton, Avatar } from "antd";
+import ProductCard from "@src/screens/Product/ProductCard";
 import {
   EditOutlined,
   EllipsisOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
-import { FlexContainer } from "./FlexContaner";
-
-const { Meta } = Card;
+import { FlexContainer } from "@components/FlexContaner";
 
 interface IProps {}
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
   flex-wrap: wrap;
+  justify-content: center;
 `;
-
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  & > * {
+    margin: 15px;
+  }
+`;
 const Products: React.FC<IProps> = () => {
   const { productStore } = useStores();
   return useObserver(() => (
     <Root>
-      <FlexContainer>
+      <Container>
         {productStore.products.map((product, index) => (
-          <Card
-            style={{ width: 300 }}
-            actions={[
-              <DeleteOutlined key="delete" />,
-              <EditOutlined key="edit" />,
-              <EllipsisOutlined key="ellipsis" />,
-            ]}
-          ></Card>
+          <ProductCard product={product} />
         ))}
-      </FlexContainer>
+      </Container>
     </Root>
   ));
 };
