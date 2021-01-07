@@ -1,16 +1,14 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { Layout, Menu } from "antd";
-import Products from "@components/Products";
 import { ROUTES } from "@stores/RouterStore";
 import { Route, Switch } from "react-router-dom";
-import NewProductForm from "@components/NewProductForm";
 import { useHistory } from "react-router-dom";
 import { useStores } from "@stores";
 import { useObserver } from "mobx-react-lite";
 import Loading from "@components/Loading";
 import RegistrationForm from "@components/RegistrationForm";
-import ProductCard from "@components/ProductCard";
+import ProductPage from "@src/screens/Product/index";
 
 const { Header, Content } = Layout;
 
@@ -36,7 +34,7 @@ const MainScreen: React.FC<IProps> = () => {
           <Menu.Item key="1" onClick={() => history.push(ROUTES.PRODUCTS)}>
             All products
           </Menu.Item>
-          <Menu.Item key="3" onClick={() => history.push(ROUTES.ADD_PRODUCT)}>
+          <Menu.Item key="3" onClick={() => history.push(ROUTES.NEW_PRODUCT)}>
             Add product
           </Menu.Item>
         </Menu>
@@ -46,17 +44,11 @@ const MainScreen: React.FC<IProps> = () => {
           <Content style={{ margin: "0 16px" }}>
             <div>
               <Switch>
-                <Route exec path={ROUTES.ADD_PRODUCT}>
-                  <NewProductForm />
-                </Route>
                 <Route exec path={ROUTES.REGISTER}>
                   <RegistrationForm />
                 </Route>
                 <Route exec path={ROUTES.PRODUCTS}>
-                  <Products />
-                </Route>
-                <Route exec path={ROUTES.EDIT}>
-                  <ProductCard />
+                  <ProductPage />
                 </Route>
               </Switch>
             </div>

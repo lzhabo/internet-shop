@@ -61,4 +61,28 @@ export default class ProductStore {
       notification.error({ message: e.toString() });
     }
   };
+
+  @action update = async (
+    data: {
+      images?: string[];
+      size: number;
+      material: string;
+      price: number;
+      name: string;
+      description: string;
+      disabled: boolean;
+      type: string;
+      amount: number;
+      addedDate: Date;
+    },
+    id: string
+  ) => {
+    try {
+      const product = await productsService.updateProduct(id, data);
+      console.log(product);
+      await runInAction(() => this.sync());
+    } catch (e) {
+      notification.error({ message: e.toString() });
+    }
+  };
 }

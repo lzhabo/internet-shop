@@ -28,8 +28,9 @@ const Title = styled.div`
   font-size: 22px;
 `;
 const Img = styled.img`
-  max-width: 300px;
+  max-width: 250px;
   @media (min-width: 1440px) {
+    max-width: 400px;
   }
 `;
 const Div = styled.div`
@@ -38,7 +39,6 @@ const Div = styled.div`
 `;
 const CollectionItem: React.FC<IProps> = ({ pic, type }) => {
   const history = useHistory();
-
   return (
     <Root>
       <Img src={pic} />
